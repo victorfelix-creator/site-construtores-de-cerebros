@@ -5,789 +5,756 @@
 <meta name="description" content="Pais e Cuidadores são Construtores de Cérebros: programa de parentalidade positiva da UFC para famílias com crianças de 0 a 5 anos e gestantes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Sacramento&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Nunito+Sans:wght@400;600&family=Sacramento&display=swap">
 <style>
-/* Layout: uma página longa em faixas que alternam areia e branco; a trilha dos 11 encontros é uma linha contínua (como o traço do cérebro da logo) que costura o meio do site. */
+/* Layout: uma página inicial curta, no ritmo do ParentData (um bloco = uma ideia, muito respiro), e o detalhe em páginas próprias.
+   Tokens com os mesmos nomes do design system no Figma (code syntax das variáveis). Tema único: claro, como no design system. */
 :root{
-  --bg:#FBF8F1; --surface:#FFFFFF; --muted:#F4EFE4; --line:#E7E0D1; --line-strong:#ADA38D;
-  --fg:#211D16; --fg-2:#645B49; --fg-3:#857B66;
-  --brand:#F7C623; --brand-hover:#F9D452; --on-brand:#4D3B00; --brand-ink:#785C00; --brand-subtle:#FDF0C4;
-  --strong:#785C00; --strong-hover:#946F02; --on-strong:#FFFFFF; --strong-2:#FDF0C4;
-  --u1:#F7C623; --u2:#9CC6E3; --u3:#A9CBA0; --u4:#EFA58C;
-  --ceu-sub:#E0EEF7; --ceu-ink:#2E6690; --sal-sub:#E3EFE0; --sal-ink:#3E6E3A; --ter-sub:#FBE3DA; --ter-ink:#A8442A; --ouro-sub:#FDF0C4; --ouro-ink:#785C00;
-  --focus:#4A8DBE;
-  --logo-ground:#FDF0C4;
-  --shadow:0 1px 3px rgba(77,59,0,.08),0 1px 2px rgba(77,59,0,.06);
-  --shadow-md:0 10px 24px -8px rgba(77,59,0,.16),0 2px 6px -2px rgba(77,59,0,.08);
-  --f-display:"Nunito",ui-rounded,"Segoe UI",system-ui,sans-serif;
-  --f-body:"Nunito Sans","Segoe UI",system-ui,-apple-system,sans-serif;
-  --f-script:"Sacramento","Segoe Script","Brush Script MT",cursive;
-  --r-sm:8px; --r-md:12px; --r-lg:20px; --r-xl:28px; --r-full:999px;
-  --gut-l:max(16px,env(safe-area-inset-left,0px)); --gut-r:max(16px,env(safe-area-inset-right,0px));
+  color-scheme:light;
+  /* Primitivos */
+  --ouro-50:#FFFBEB; --ouro-100:#FDF0C4; --ouro-200:#FBE38A; --ouro-300:#F9D452; --ouro-400:#F7C623; --ouro-500:#DDA80C; --ouro-700:#946F02; --ouro-800:#785C00; --ouro-900:#4D3B00;
+  --areia-0:#FFFFFF; --areia-50:#FBF8F1; --areia-100:#F4EFE4; --areia-200:#E7E0D1; --areia-400:#ADA38D; --areia-600:#645B49; --areia-700:#4A4234; --areia-900:#211D16;
+  --ceu-100:#E0EEF7; --ceu-300:#9CC6E3; --ceu-500:#4A8DBE; --ceu-700:#2E6690;
+  --salvia-100:#E3EFE0; --salvia-300:#A9CBA0; --salvia-500:#5E9A57; --salvia-700:#3E6E3A;
+  --terracota-100:#FBE3DA; --terracota-300:#EFA58C; --terracota-500:#D9643F; --terracota-700:#A8442A;
+  /* Cor (semântica) */
+  --cor-bg-canvas:var(--areia-50); --cor-bg-surface:var(--areia-0); --cor-bg-surface-muted:var(--areia-100);
+  --cor-bg-brand:var(--ouro-400); --cor-bg-brand-hover:var(--ouro-300); --cor-bg-brand-pressed:var(--ouro-500); --cor-bg-brand-subtle:var(--ouro-100);
+  --cor-bg-strong:var(--ouro-800); --cor-bg-strong-hover:var(--ouro-700);
+  --cor-bg-success-subtle:var(--salvia-100); --cor-bg-info-subtle:var(--ceu-100); --cor-bg-danger-subtle:var(--terracota-100);
+  --cor-text-primary:var(--areia-900); --cor-text-secondary:var(--areia-600); --cor-text-brand:var(--ouro-800); --cor-text-on-brand:var(--ouro-900); --cor-text-on-strong:var(--areia-0);
+  --cor-text-success:var(--salvia-700); --cor-text-info:var(--ceu-700); --cor-text-danger:var(--terracota-700);
+  --cor-border-default:var(--areia-200); --cor-border-strong:var(--areia-400); --cor-border-brand:var(--ouro-500); --cor-border-focus:var(--ceu-500); --cor-border-danger:var(--terracota-500);
+  --cor-icon-default:var(--areia-700); --cor-icon-brand:var(--ouro-700);
+  --cor-unidade-1:var(--ouro-400); --cor-unidade-2:var(--ceu-300); --cor-unidade-3:var(--salvia-300); --cor-unidade-4:var(--terracota-300);
+  /* Espaçamento e forma */
+  --espaco-1:4px; --espaco-2:8px; --espaco-3:12px; --espaco-4:16px; --espaco-5:24px; --espaco-6:32px; --espaco-7:48px; --espaco-8:64px;
+  --raio-sm:8px; --raio-md:12px; --raio-lg:20px; --raio-xl:28px; --raio-full:999px;
+  --borda-fina:1px; --borda-media:2px;
+  /* Sombras */
+  --sombra-suave:0 1px 3px rgba(77,59,0,.08),0 1px 2px rgba(77,59,0,.06);
+  --sombra-media:0 4px 12px -2px rgba(77,59,0,.10),0 2px 4px -1px rgba(77,59,0,.06);
+  /* Famílias */
+  --f-titulo:"Nunito",ui-rounded,"Segoe UI",system-ui,sans-serif;
+  --f-corpo:"Nunito Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-acento:"Sacramento","Segoe Script","Brush Script MT",cursive;
 }
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --bg:#1B1813; --surface:#25211A; --muted:#2E2920; --line:#3D3629; --line-strong:#6B624F;
-  --fg:#F4EFE4; --fg-2:#CFC5B0; --fg-3:#A89D86;
-  --brand:#F7C623; --brand-hover:#F9D452; --on-brand:#2B2100; --brand-ink:#F9D452; --brand-subtle:#3A300F;
-  --strong:#F9D452; --strong-hover:#FBE38A; --on-strong:#2B2100; --strong-2:#4D3B00;
-  --u1:#F7C623; --u2:#7FB3D8; --u3:#93BD88; --u4:#E8906F;
-  --ceu-sub:#1C2C38; --ceu-ink:#A9CFEA; --sal-sub:#1F2D1D; --sal-ink:#B3D4AA; --ter-sub:#3A2219; --ter-ink:#F2B39C; --ouro-sub:#3A300F; --ouro-ink:#F9D452;
-  --focus:#7FB3D8; --logo-ground:#FDF0C4;
-  --shadow:0 1px 3px rgba(0,0,0,.4); --shadow-md:0 10px 24px -8px rgba(0,0,0,.55);
-  color-scheme:dark }}
-:root[data-theme="dark"]{
-  --bg:#1B1813; --surface:#25211A; --muted:#2E2920; --line:#3D3629; --line-strong:#6B624F;
-  --fg:#F4EFE4; --fg-2:#CFC5B0; --fg-3:#A89D86;
-  --brand:#F7C623; --brand-hover:#F9D452; --on-brand:#2B2100; --brand-ink:#F9D452; --brand-subtle:#3A300F;
-  --strong:#F9D452; --strong-hover:#FBE38A; --on-strong:#2B2100; --strong-2:#4D3B00;
-  --u1:#F7C623; --u2:#7FB3D8; --u3:#93BD88; --u4:#E8906F;
-  --ceu-sub:#1C2C38; --ceu-ink:#A9CFEA; --sal-sub:#1F2D1D; --sal-ink:#B3D4AA; --ter-sub:#3A2219; --ter-ink:#F2B39C; --ouro-sub:#3A300F; --ouro-ink:#F9D452;
-  --focus:#7FB3D8; --logo-ground:#FDF0C4;
-  --shadow:0 1px 3px rgba(0,0,0,.4); --shadow-md:0 10px 24px -8px rgba(0,0,0,.55);
-  color-scheme:dark }
-
 *,*::before,*::after{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{margin:0;background:var(--cor-bg-canvas);color:var(--cor-text-primary);font-family:var(--f-corpo);font-size:16px;line-height:24px;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--cor-bg-surface)}
+h1,h2,h3,h4,p,ul,ol,dl,dd,figure,blockquote{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+:focus-visible{outline:var(--borda-media) solid var(--cor-border-focus);outline-offset:3px}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
-h1,h2,h3,h4{font-family:var(--f-display);line-height:1.15;margin:0;text-wrap:balance;color:var(--fg)}
-p{margin:0}
-a{color:var(--brand-ink);text-underline-offset:3px}
-:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
-.wrap{max-width:1160px;margin-inline:auto;padding-left:var(--gut-l);padding-right:var(--gut-r)}
-.band{padding-block:clamp(64px,9vw,104px)}
-.band.alt{background:var(--surface);border-block:1px solid var(--line)}
-.eyebrow{font-family:var(--f-display);font-weight:800;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-ink)}
-.h2{font-size:clamp(1.9rem,3.6vw,2.6rem);font-weight:800;letter-spacing:-.01em}
-.lead{font-size:1.15rem;color:var(--fg-2);max-width:62ch}
-.script{font-family:var(--f-script);font-weight:400;color:var(--brand-ink);line-height:1}
-.sec-head{display:grid;gap:14px;margin-bottom:44px;max-width:760px}
-.todo{display:inline-block;font-family:var(--f-body);font-size:.8rem;font-weight:700;color:var(--ter-ink);background:var(--ter-sub);border:1px dashed var(--ter-ink);border-radius:var(--r-sm);padding:1px 8px;letter-spacing:0;text-transform:none;justify-self:start;width:max-content;max-width:100%}
 
-/* Botões */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 24px;border-radius:var(--r-full);font-family:var(--f-display);font-weight:800;font-size:1rem;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:background .15s,transform .15s}
-.btn svg{width:20px;height:20px;flex:none}
-.btn-primary{background:var(--brand);color:var(--on-brand)}
-.btn-primary:hover{background:var(--brand-hover)}
-.btn-strong{background:var(--strong);color:var(--on-strong)}
-.btn-strong:hover{background:var(--strong-hover)}
-.btn-outline{background:transparent;color:var(--brand-ink);border-color:var(--brand)}
-.btn-outline:hover{background:var(--brand-subtle)}
-.btn-invert{background:var(--on-strong);color:var(--strong)}
-.btn-invert:hover{opacity:.9}
-.btn-ghost-invert{background:transparent;color:var(--on-strong);border-color:var(--on-strong)}
-.btn-ghost-invert:hover{background:color-mix(in srgb,var(--on-strong) 12%,transparent)}
-.btn:active{transform:translateY(1px)}
-.btn-row{display:flex;flex-wrap:wrap;gap:12px}
+/* Estilos de texto do design system */
+.t-display{font:800 48px/56px var(--f-titulo);letter-spacing:-.5px;text-wrap:balance}
+.t-h1{font:800 36px/44px var(--f-titulo);letter-spacing:-.3px;text-wrap:balance}
+.t-h2{font:700 28px/36px var(--f-titulo);text-wrap:balance}
+.t-h3{font:700 22px/30px var(--f-titulo);text-wrap:balance}
+.t-h4{font:700 18px/26px var(--f-titulo)}
+.t-corpo-g{font:400 18px/28px var(--f-corpo)}
+.t-corpo-m{font:400 16px/24px var(--f-corpo)}
+.t-corpo-p{font:400 14px/20px var(--f-corpo)}
+.t-rotulo-g{font:700 16px/20px var(--f-titulo)}
+.t-rotulo-m{font:700 14px/18px var(--f-titulo)}
+.t-legenda{font:600 12px/16px var(--f-corpo);letter-spacing:.2px}
+.t-sobretitulo{font:800 12px/16px var(--f-titulo);letter-spacing:1.2px;text-transform:uppercase;color:var(--cor-text-brand)}
+.t-acento-g{font:400 56px/64px var(--f-acento);color:var(--cor-text-brand)}
+.t-acento-m{font:400 36px/44px var(--f-acento);color:var(--cor-text-brand)}
+.sec{color:var(--cor-text-secondary)}
+@media (max-width:720px){
+  .t-display{font-size:36px;line-height:44px}
+  .t-h1{font-size:28px;line-height:36px}
+  .t-acento-g{font-size:44px;line-height:52px}
+}
+
+/* Estrutura */
+.wrap{max-width:1120px;margin-inline:auto;padding-left:max(var(--espaco-5),env(safe-area-inset-left,0px));padding-right:max(var(--espaco-5),env(safe-area-inset-right,0px))}
+@media (max-width:520px){.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}}
+.secao{padding-block:96px}
+.secao.branca{background:var(--cor-bg-surface)}
+@media (max-width:720px){.secao{padding-block:var(--espaco-8)}}
+.cabeca{display:grid;gap:var(--espaco-3);max-width:640px;margin-bottom:var(--espaco-7)}
+.cabeca.centro{margin-inline:auto;text-align:center}
+.linha-titulo{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:var(--espaco-4);margin-bottom:var(--espaco-7)}
+.linha-titulo .cabeca{margin-bottom:0}
+
+/* Botão */
+.botao{display:inline-flex;align-items:center;justify-content:center;gap:var(--espaco-2);height:48px;padding:0 var(--espaco-5);border-radius:var(--raio-full);font:700 16px/20px var(--f-titulo);text-decoration:none;border:var(--borda-media) solid transparent;cursor:pointer;white-space:nowrap}
+.botao svg{width:20px;height:20px;flex:none}
+.botao--grande{height:56px;padding:0 var(--espaco-6)}
+.botao--primario{background:var(--cor-bg-brand);color:var(--cor-text-on-brand)}
+.botao--primario:hover{background:var(--cor-bg-brand-hover)}
+.botao--primario:active{background:var(--cor-bg-brand-pressed)}
+.botao--secundario{background:var(--cor-bg-strong);color:var(--cor-text-on-strong)}
+.botao--secundario:hover{background:var(--cor-bg-strong-hover)}
+.botao--contorno{background:transparent;color:var(--cor-text-brand);border-color:var(--cor-border-brand)}
+.botao--contorno:hover,.botao--texto:hover{background:var(--cor-bg-brand-subtle)}
+.botao--texto{background:transparent;color:var(--cor-text-brand);padding:0 var(--espaco-3)}
+.botao--claro{background:var(--areia-0);color:var(--cor-text-brand)}
+.botao--claro:hover{background:var(--ouro-100)}
+.botoes{display:flex;flex-wrap:wrap;gap:var(--espaco-3)}
+
+/* Tag */
+.tag{display:inline-flex;align-items:center;padding:var(--espaco-1) var(--espaco-3);border-radius:var(--raio-full);font:700 14px/18px var(--f-titulo);white-space:nowrap;text-decoration:none;border:0}
+.tag--ouro{background:var(--cor-bg-brand-subtle);color:var(--cor-text-brand)}
+.tag--ceu{background:var(--cor-bg-info-subtle);color:var(--cor-text-info)}
+.tag--salvia{background:var(--cor-bg-success-subtle);color:var(--cor-text-success)}
+.tag--terracota{background:var(--cor-bg-danger-subtle);color:var(--cor-text-danger)}
+.tag--areia{background:var(--cor-bg-surface-muted);color:var(--cor-text-secondary)}
+a.tag:hover,button.tag:hover{filter:brightness(.96);text-decoration:underline}
+.pendente{display:inline-block;font:600 12px/16px var(--f-corpo);color:var(--cor-text-danger);border:1px dashed var(--cor-border-danger);border-radius:var(--raio-sm);padding:1px 6px;vertical-align:middle}
+
+/* Card */
+.card{background:var(--cor-bg-surface);border:var(--borda-fina) solid var(--cor-border-default);border-radius:var(--raio-lg);box-shadow:var(--sombra-suave);padding:var(--espaco-5);display:grid;gap:var(--espaco-3);align-content:start;min-width:0}
+.grade-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--espaco-5)}
+.grade-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--espaco-5)}
+@media (max-width:980px){.grade-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:820px){.grade-3{grid-template-columns:1fr}}
+@media (max-width:560px){.grade-4{grid-template-columns:1fr}}
+
+/* Ícone */
+.ico{width:24px;height:24px;flex:none;color:var(--cor-icon-default)}
+.ico-18{width:18px;height:18px}
+
+/* Card de encontro */
+.encontro{padding:0;overflow:hidden;gap:0;box-shadow:var(--sombra-suave)}
+.encontro .faixa{height:8px;background:var(--cor-unidade-2)}
+.encontro .conteudo{padding:var(--espaco-5);display:grid;gap:var(--espaco-3)}
+.encontro .topo{display:flex;justify-content:space-between;align-items:center;gap:var(--espaco-3)}
+.encontro .topo .t-sobretitulo{color:var(--cor-text-secondary)}
+.meta{display:grid;gap:6px}
+.meta li{display:flex;align-items:center;gap:var(--espaco-2);color:var(--cor-text-secondary)}
+
+/* Passo e Progresso */
+.progresso{display:grid;gap:var(--espaco-3)}
+.progresso .cab{display:flex;justify-content:space-between;align-items:center;gap:var(--espaco-3)}
+.trilha{display:flex;align-items:center}
+.trilha .linha{flex:1;height:2px;background:var(--cor-border-strong);min-width:4px}
+.trilha .linha.feita{background:var(--cor-bg-strong)}
+.passo{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;flex:none;font:800 13px/1 var(--f-titulo);font-variant-numeric:tabular-nums}
+.passo--concluido{background:var(--cor-bg-strong);color:var(--cor-text-on-strong)}
+.passo--atual{background:var(--cor-bg-brand);color:var(--cor-text-on-brand);border:var(--borda-media) solid var(--cor-bg-strong);box-shadow:0 0 0 4px rgba(247,198,35,.45)}
+.passo--futuro{background:var(--cor-bg-surface);color:var(--cor-text-secondary);border:var(--borda-fina) solid var(--cor-border-strong)}
+.passo svg{width:16px;height:16px}
+.unidades{display:flex;gap:var(--espaco-1)}
+.unidades span{height:6px;border-radius:var(--raio-full)}
+.legenda-unidades{display:flex;flex-wrap:wrap;gap:var(--espaco-2) var(--espaco-4)}
+.legenda-unidades li{display:flex;align-items:center;gap:6px}
+.legenda-unidades i{width:10px;height:10px;border-radius:50%;display:inline-block}
+@media (max-width:420px){.passo{width:24px;height:24px;font-size:11px}.passo svg{width:13px;height:13px}}
+
+/* Aviso */
+.aviso{display:grid;grid-template-columns:24px 1fr;gap:var(--espaco-3);padding:var(--espaco-4);border-radius:var(--raio-md)}
+.aviso .ico{margin-top:-2px}
+.aviso > div{display:grid;gap:var(--espaco-1);min-width:0}
+.aviso--dica{background:var(--cor-bg-info-subtle)} .aviso--dica .ico{color:var(--ceu-500)} .aviso--dica .titulo{color:var(--cor-text-info)}
+.aviso--sucesso{background:var(--cor-bg-success-subtle)} .aviso--sucesso .ico{color:var(--salvia-500)} .aviso--sucesso .titulo{color:var(--cor-text-success)}
+.aviso--atencao{background:var(--cor-bg-brand-subtle)} .aviso--atencao .ico{color:var(--cor-icon-brand)} .aviso--atencao .titulo{color:var(--cor-text-brand)}
+.aviso--erro{background:var(--cor-bg-danger-subtle)} .aviso--erro .ico{color:var(--terracota-500)} .aviso--erro .titulo{color:var(--cor-text-danger)}
+
+/* Campo de texto */
+.campo{display:grid;gap:var(--espaco-2);min-width:0}
+.campo label{font:700 14px/18px var(--f-titulo)}
+.campo .caixa{width:100%;height:48px;padding:0 var(--espaco-4);border-radius:var(--raio-md);border:var(--borda-fina) solid var(--cor-border-strong);background:var(--cor-bg-surface);color:var(--cor-text-primary);font:400 16px/24px var(--f-corpo)}
+.campo textarea.caixa{height:120px;padding:var(--espaco-3) var(--espaco-4);resize:vertical}
+.campo .caixa::placeholder{color:var(--cor-text-secondary)}
+.campo .caixa:focus{outline:none;border:var(--borda-media) solid var(--cor-border-focus);box-shadow:0 0 0 4px rgba(74,141,190,.25)}
+.campo .ajuda{font:600 12px/16px var(--f-corpo);color:var(--cor-text-secondary)}
+.campo.erro .caixa{border:var(--borda-media) solid var(--cor-border-danger)}
+.campo.erro .ajuda{color:var(--cor-text-danger)}
 
 /* Cabeçalho */
-.site-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
-.head-in{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:72px}
-.brand{display:flex;flex-direction:column;text-decoration:none;color:var(--fg);line-height:1.05}
-.brand small{font-family:var(--f-script);font-size:1.35rem;color:var(--brand-ink)}
-.brand b{font-family:var(--f-display);font-weight:900;font-size:1.12rem;letter-spacing:-.01em}
-.nav{display:flex;align-items:center;gap:4px}
-.nav a{font-family:var(--f-display);font-weight:700;font-size:.95rem;color:var(--fg);text-decoration:none;padding:10px 12px;border-radius:var(--r-full)}
-.nav a:hover,.nav a[aria-current="page"]{background:var(--brand-subtle)}
-.nav .btn{margin-left:8px;min-height:44px;padding:0 18px}
-.menu-btn{display:none;min-height:44px;min-width:44px;border-radius:var(--r-full);border:1px solid var(--line-strong);background:var(--surface);color:var(--fg);font:800 .95rem var(--f-display);padding:0 16px;cursor:pointer}
-.nav a{white-space:nowrap}
-@media (max-width:1100px){
-  .menu-btn{display:inline-flex;align-items:center;gap:8px}
-  .nav{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:2px;background:var(--bg);border-bottom:1px solid var(--line);padding:8px var(--gut-r) 16px var(--gut-l);box-shadow:var(--shadow-md)}
-  .nav.open{display:flex}
-  .nav a{padding:12px 14px}
-  .nav .btn{margin:8px 0 0}
+.topo-site{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--cor-bg-surface);border-bottom:var(--borda-fina) solid var(--cor-border-default)}
+.topo-site .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--espaco-5);height:80px}
+.marca{display:flex;flex-direction:column;text-decoration:none;line-height:1}
+.marca small{font:400 22px/22px var(--f-acento);color:var(--cor-text-brand)}
+.marca b{font:800 18px/22px var(--f-titulo)}
+.menu{display:flex;align-items:center;gap:var(--espaco-1)}
+.menu a:not(.botao){font:700 16px/20px var(--f-titulo);text-decoration:none;padding:10px var(--espaco-3);border-radius:var(--raio-full);white-space:nowrap}
+.menu a:not(.botao):hover{background:var(--cor-bg-surface-muted)}
+.menu a[aria-current="page"]{background:var(--cor-bg-brand-subtle);color:var(--cor-text-brand)}
+.menu .botao{margin-left:var(--espaco-3)}
+.abre-menu{display:none;height:48px;padding:0 var(--espaco-4);border-radius:var(--raio-full);border:var(--borda-fina) solid var(--cor-border-strong);background:var(--cor-bg-surface);font:700 16px/20px var(--f-titulo);color:var(--cor-text-primary);gap:var(--espaco-2);align-items:center;cursor:pointer}
+@media (max-width:1000px){
+  .abre-menu{display:inline-flex}
+  .menu{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;background:var(--cor-bg-surface);border-bottom:var(--borda-fina) solid var(--cor-border-default);box-shadow:var(--sombra-media);padding:var(--espaco-3) max(16px,env(safe-area-inset-right,0px)) var(--espaco-5) max(16px,env(safe-area-inset-left,0px))}
+  .menu.aberto{display:flex}
+  .menu a:not(.botao){padding:14px var(--espaco-3)}
+  .menu .botao{margin:var(--espaco-3) 0 0}
 }
 
-/* Hero */
-.hero{padding-block:clamp(48px,7vw,88px) clamp(56px,8vw,96px)}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,72px);align-items:center}
-.hero-text{display:grid;gap:22px;min-width:0}
-.hero h1{font-size:clamp(2.5rem,5.6vw,4.4rem);font-weight:900;letter-spacing:-.025em;line-height:1.02}
-.hero h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--brand) 62%,var(--brand) 92%,transparent 92%);padding-inline:2px}
-.hero .script{font-size:clamp(2.4rem,4.4vw,3.4rem);margin-top:-4px}
-.hero-art{position:relative;display:grid;place-items:center;min-width:0}
-.hero-art .disc{width:min(100%,460px);aspect-ratio:1;max-width:100%;border-radius:50%;background:var(--logo-ground);display:grid;place-items:center;box-shadow:inset 0 0 0 12px color-mix(in srgb,var(--logo-ground) 70%,var(--brand))}
-.hero-art img{width:78%;height:auto;max-width:100%}
-.hero-facts{display:flex;flex-wrap:wrap;gap:10px 18px;color:var(--fg-2);font-size:.95rem}
-.hero-facts span{display:inline-flex;align-items:center;gap:8px}
-.hero-facts i{width:8px;height:8px;border-radius:50%;background:var(--brand);display:inline-block}
-@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.hero-art{order:-1}.hero-art .disc{width:min(78%,320px)}}
+/* Início */
+.hero{padding-block:var(--espaco-8) 96px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--espaco-7);align-items:center}
+.hero .texto{display:grid;gap:var(--espaco-5);min-width:0}
+.hero .arte{display:grid;place-items:center}
+.circulo{width:100%;max-width:440px;aspect-ratio:1;border-radius:50%;background:var(--cor-bg-brand-subtle);display:grid;place-items:center}
+.circulo img{width:76%;height:auto}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero .arte{order:-1;justify-items:start}.circulo{max-width:220px}.hero{padding-block:var(--espaco-6) var(--espaco-8)}}
 
-/* Cartões simples */
-.cards-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-@media (max-width:860px){.cards-3{grid-template-columns:1fr}}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;display:grid;gap:10px;align-content:start;min-width:0}
-.band.alt .card{background:var(--bg)}
-.card h3{font-size:1.25rem;font-weight:800}
-.card p{color:var(--fg-2)}
-.icon-dot{width:48px;height:48px;border-radius:var(--r-md);display:grid;place-items:center;background:var(--brand-subtle);color:var(--brand-ink)}
-.icon-dot svg{width:24px;height:24px}
+.dica .fase{display:flex;flex-wrap:wrap;align-items:center;gap:var(--espaco-2)}
+.dica h3{font:700 18px/26px var(--f-titulo)}
+.dica p{color:var(--cor-text-secondary)}
+.dica .rodape{margin-top:var(--espaco-1)}
+.buscados{margin-top:var(--espaco-6);display:flex;flex-wrap:wrap;align-items:center;gap:var(--espaco-2)}
+.buscados .t-rotulo-m{margin-right:var(--espaco-2)}
 
-/* Teoria da mudança */
-.toc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:40px;list-style:none;padding:0;counter-reset:passo}
-.toc li{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px 22px 24px;display:grid;gap:8px;align-content:start;min-width:0}
-.band.alt .toc li{background:var(--bg)}
-.toc li::before{counter-increment:passo;content:counter(passo);font:900 .9rem var(--f-display);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--strong);color:var(--on-strong)}
-.toc li:last-child{background:var(--brand-subtle);border-color:transparent}
-.toc li:last-child::before{background:var(--brand);color:var(--on-brand)}
-.toc b{font-family:var(--f-display);font-weight:800;font-size:1.05rem;line-height:1.3}
-.toc span{color:var(--fg-2);font-size:.95rem}
-.toc li:not(:last-child)::after{content:"";position:absolute;right:-12px;top:36px;width:12px;height:3px;background:var(--line-strong)}
-@media (max-width:860px){.toc{grid-template-columns:1fr 1fr}.toc li::after{display:none}}
-@media (max-width:480px){.toc{grid-template-columns:1fr}}
+.dois{display:grid;grid-template-columns:1fr 1fr;gap:var(--espaco-8);align-items:center}
+@media (max-width:900px){.dois{grid-template-columns:1fr;gap:var(--espaco-7)}}
+.dois .texto{display:grid;gap:var(--espaco-5);min-width:0}
+.fatos{display:grid;gap:var(--espaco-3)}
+.fatos li{display:flex;gap:var(--espaco-3);align-items:center}
+.pilha{display:grid;gap:var(--espaco-5);min-width:0}
 
-/* Trilha */
-.trail-line{display:block;width:100%;height:56px;margin:-8px 0 28px}
-.trail-line path{fill:none;stroke:var(--brand);stroke-width:5;stroke-linecap:round}
-.units{display:grid;grid-template-columns:4fr 3fr 3fr 2.2fr;gap:16px}
-@media (max-width:1000px){.units{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.units{grid-template-columns:1fr}}
-.unit{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;min-width:0}
-.unit-band{height:10px;background:var(--uc)}
-.unit-body{padding:22px;display:grid;gap:14px;align-content:start}
-.unit-tag{justify-self:start;font:800 .8rem var(--f-display);padding:4px 12px;border-radius:var(--r-md);background:var(--us);color:var(--ui)}
-.unit h3{font-size:1.15rem;font-weight:800}
-.unit p{color:var(--fg-2);font-size:.95rem}
-.sessions{list-style:none;padding:0;margin:4px 0 0;display:grid;gap:10px}
-.sessions li{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:center;font-weight:600;line-height:1.3}
-.sessions li span{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font:900 .9rem var(--f-display);background:var(--uc);color:#2B2100;font-variant-numeric:tabular-nums}
-.u1{--uc:var(--u1);--us:var(--ouro-sub);--ui:var(--ouro-ink)}
-.u2{--uc:var(--u2);--us:var(--ceu-sub);--ui:var(--ceu-ink)}
-.u3{--uc:var(--u3);--us:var(--sal-sub);--ui:var(--sal-ink)}
-.u4{--uc:var(--u4);--us:var(--ter-sub);--ui:var(--ter-ink)}
-.trail-note{margin-top:24px;color:var(--fg-2);font-size:.95rem}
+.numeros{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--espaco-6);text-align:center}
+@media (max-width:720px){.numeros{grid-template-columns:1fr;gap:var(--espaco-6)}}
+.numero{display:grid;gap:var(--espaco-2);justify-items:center}
+.numero b{font:800 48px/56px var(--f-titulo);color:var(--cor-text-brand);font-variant-numeric:tabular-nums}
+.numero p{max-width:260px}
+.numero .t-legenda{color:var(--cor-text-secondary)}
+.destaque-pesquisa{margin:var(--espaco-7) auto 0;max-width:760px}
 
-/* Números */
-.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
-@media (max-width:1000px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:480px){.stats{grid-template-columns:1fr}}
-.stat{border-top:3px solid var(--brand);padding-top:16px;display:grid;gap:6px;align-content:start;min-width:0}
-.stat b{font:900 clamp(2.2rem,4vw,3rem)/1 var(--f-display);color:var(--fg);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
-.stat b small{font-size:.45em;font-weight:800;margin-left:4px}
-.stat span{font-weight:700;line-height:1.35}
-.stat cite{font-style:normal;font-size:.8rem;color:var(--fg-3)}
-.stat.pending{border-top-style:dashed;border-top-color:var(--ter-ink)}
-.stat.pending b{color:var(--fg-3)}
+.citacao{background:var(--cor-bg-brand-subtle);border-radius:var(--raio-xl);padding:var(--espaco-7);display:grid;gap:var(--espaco-4)}
+.citacao blockquote{font:700 28px/36px var(--f-titulo);text-wrap:balance}
+.citacao figcaption{color:var(--cor-text-secondary)}
+@media (max-width:560px){.citacao{padding:var(--espaco-6)}.citacao blockquote{font-size:22px;line-height:30px}}
 
-/* Famílias */
-.fam-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:32px;align-items:start}
-@media (max-width:980px){.fam-grid{grid-template-columns:1fr}}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
-.chip{min-height:44px;padding:0 18px;border-radius:var(--r-full);border:1.5px solid var(--line-strong);background:transparent;color:var(--fg);font:800 .92rem var(--f-display);cursor:pointer}
-.chip:hover{background:var(--muted)}
-.chip[aria-pressed="true"]{background:var(--strong);border-color:var(--strong);color:var(--on-strong)}
-.tips{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
-.tip{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px;display:grid;gap:10px;align-content:start;min-width:0;box-shadow:var(--shadow)}
-.band.alt .tip{background:var(--bg)}
-.tip .phase{font:800 .72rem var(--f-display);letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3)}
-.tip h3{font-size:1.12rem;font-weight:800;line-height:1.25}
-.tip p{color:var(--fg-2);font-size:.95rem}
-.tip .term{justify-self:start;font:700 .78rem var(--f-body);padding:3px 10px;border-radius:var(--r-full);background:var(--ceu-sub);color:var(--ceu-ink);border:0;cursor:pointer}
-.tip .term:hover{text-decoration:underline}
-.gloss{position:sticky;top:calc(env(safe-area-inset-top,0px) + 92px);background:var(--brand-subtle);border-radius:var(--r-xl);padding:24px;display:grid;gap:14px;min-width:0}
-.gloss h3{font-size:1.2rem;font-weight:800}
-.gloss p.small{font-size:.9rem;color:var(--fg-2)}
-.field{display:grid;gap:6px}
-.field label{font:800 .9rem var(--f-display)}
-.input,select.input,textarea.input{width:100%;min-height:48px;border-radius:var(--r-md);border:1.5px solid var(--line-strong);background:var(--surface);color:var(--fg);font:400 1rem var(--f-body);padding:10px 14px}
-textarea.input{min-height:110px;resize:vertical}
-.input:focus{outline:none;border-color:var(--focus);box-shadow:0 0 0 4px color-mix(in srgb,var(--focus) 25%,transparent)}
-.gloss dl{margin:0;display:grid;gap:12px;max-height:420px;overflow:auto;padding-right:4px}
-.gloss dt{font:800 1rem var(--f-display)}
-.gloss dd{margin:2px 0 0;font-size:.92rem;color:var(--fg-2)}
-.gloss .hit{background:var(--surface);border-radius:var(--r-md);padding:10px 12px}
-.gloss .empty{font-size:.92rem;color:var(--fg-2)}
-.popular{display:flex;flex-wrap:wrap;gap:6px}
-.popular button{font:700 .8rem var(--f-body);padding:4px 10px;border-radius:var(--r-full);border:1px solid var(--line-strong);background:transparent;color:var(--fg);cursor:pointer;min-height:32px}
-.popular button:hover{background:var(--surface)}
+.apoios{display:flex;flex-wrap:wrap;gap:var(--espaco-3)}
+.apoio{background:var(--cor-bg-surface);border:var(--borda-fina) solid var(--cor-border-default);border-radius:var(--raio-md);padding:var(--espaco-3) var(--espaco-4);font:700 14px/18px var(--f-titulo);color:var(--cor-text-secondary)}
 
-/* Citação */
-.quote{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;max-width:900px;margin-inline:auto}
-.quote .mark{font:900 7rem/0.7 var(--f-display);color:var(--brand)}
-.quote blockquote{margin:0;font:800 clamp(1.4rem,2.8vw,2rem)/1.3 var(--f-display);text-wrap:balance}
-.quote figcaption{margin-top:14px;color:var(--fg-2)}
-@media (max-width:560px){.quote{grid-template-columns:1fr}.quote .mark{font-size:5rem}}
-.voices{margin-top:48px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-@media (max-width:860px){.voices{grid-template-columns:1fr}}
-.voice{border:1.5px dashed var(--line-strong);border-radius:var(--r-lg);padding:22px;display:grid;gap:8px;color:var(--fg-2);font-size:.95rem}
-.voice b{font-family:var(--f-display);color:var(--fg)}
+.chamada{background:var(--cor-bg-strong);color:var(--cor-text-on-strong);border-radius:var(--raio-xl);padding:var(--espaco-7);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:var(--espaco-5)}
+.chamada .t-h1{color:var(--cor-text-on-strong)}
+.chamada p{opacity:.9;max-width:560px}
+.chamada > div{display:grid;gap:var(--espaco-3)}
+@media (max-width:560px){.chamada{padding:var(--espaco-6)}}
 
-/* Pesquisa */
-.studies{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-@media (max-width:860px){.studies{grid-template-columns:1fr}}
-.study{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;display:grid;gap:12px;align-content:start;min-width:0}
-.study .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.pill{font:800 .75rem var(--f-display);padding:4px 10px;border-radius:var(--r-full);background:var(--muted);color:var(--fg-2)}
-.pill.y{background:var(--ouro-sub);color:var(--ouro-ink)}
-.study h3{font-size:1.15rem;font-weight:800;line-height:1.3}
-.study .who{font-size:.9rem;color:var(--fg-3)}
-.study .finding{border-left:4px solid var(--u3);padding:4px 0 4px 14px;color:var(--fg)}
-.study .finding b{display:block;font:800 .78rem var(--f-display);letter-spacing:.08em;text-transform:uppercase;color:var(--sal-ink);margin-bottom:2px}
-.pubs{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;color:var(--fg-2);font-size:.95rem}
+.duvidas{max-width:760px;margin-inline:auto;display:grid;border-top:var(--borda-fina) solid var(--cor-border-default)}
+.duvidas details{border-bottom:var(--borda-fina) solid var(--cor-border-default)}
+.duvidas summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:var(--espaco-4);align-items:center;padding:var(--espaco-5) 0;font:700 18px/26px var(--f-titulo)}
+.duvidas summary::-webkit-details-marker{display:none}
+.duvidas summary svg{width:24px;height:24px;color:var(--cor-icon-brand);transition:transform .2s;flex:none}
+.duvidas details[open] summary svg{transform:rotate(45deg)}
+.duvidas details p{padding-bottom:var(--espaco-5);color:var(--cor-text-secondary);max-width:65ch}
 
-/* Linha do tempo */
-.timeline{list-style:none;padding:0;margin:56px 0 0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;position:relative}
-.timeline::before{content:"";position:absolute;left:0;right:0;top:15px;height:3px;background:var(--line-strong)}
-.timeline li{position:relative;padding:44px 18px 0 0;display:grid;gap:6px;align-content:start;min-width:0}
-.timeline li::before{content:"";position:absolute;top:6px;left:0;width:21px;height:21px;border-radius:50%;background:var(--surface);border:4px solid var(--strong)}
-.timeline li:last-child::before{background:var(--brand);border-color:var(--brand)}
-.timeline time{font:900 1.5rem var(--f-display);color:var(--brand-ink)}
-.timeline p{font-size:.93rem;color:var(--fg-2)}
-@media (max-width:900px){
-  .timeline{grid-template-columns:1fr;gap:22px;padding-left:34px}
-  .timeline::before{left:9px;right:auto;top:0;bottom:0;width:3px;height:auto}
-  .timeline li{padding:0}
-  .timeline li::before{left:-34px;top:4px}
-}
+/* Páginas internas */
+.cab-pagina{padding-block:var(--espaco-8) var(--espaco-7)}
+.cab-pagina .wrap{display:grid;gap:var(--espaco-3)}
+.cab-pagina p.t-corpo-g{max-width:680px}
+.abas{display:flex;flex-wrap:wrap;gap:var(--espaco-2);margin-bottom:var(--espaco-6)}
+.aba{height:40px;padding:0 var(--espaco-4);border-radius:var(--raio-full);border:var(--borda-fina) solid var(--cor-border-strong);background:var(--cor-bg-surface);font:700 14px/18px var(--f-titulo);color:var(--cor-text-primary);cursor:pointer}
+.aba:hover{background:var(--cor-bg-surface-muted)}
+.aba[aria-pressed="true"]{background:var(--cor-bg-strong);border-color:var(--cor-bg-strong);color:var(--cor-text-on-strong)}
+.glossario{display:grid;grid-template-columns:320px 1fr;gap:var(--espaco-7);align-items:start}
+@media (max-width:860px){.glossario{grid-template-columns:1fr;gap:var(--espaco-5)}}
+.glossario .lado{display:grid;gap:var(--espaco-4);position:sticky;top:calc(env(safe-area-inset-top,0px) + 104px)}
+@media (max-width:860px){.glossario .lado{position:static}}
+.termos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--espaco-5) var(--espaco-6)}
+@media (max-width:620px){.termos{grid-template-columns:1fr}}
+.termos div{display:grid;gap:var(--espaco-1);padding-top:var(--espaco-4);border-top:var(--borda-fina) solid var(--cor-border-default)}
+.termos dd{color:var(--cor-text-secondary)}
+.status{margin-top:var(--espaco-4)}
 
-/* Quem faz */
-.team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-@media (max-width:860px){.team{grid-template-columns:1fr}}
-.person{display:grid;grid-template-columns:56px 1fr;gap:16px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px;min-width:0}
-.band.alt .person{background:var(--bg)}
-.avatar{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font:900 1.05rem var(--f-display);background:var(--brand);color:var(--on-brand)}
-.person:nth-child(2) .avatar{background:var(--u2);color:#14324A}
-.person:nth-child(3) .avatar{background:var(--u3);color:#1F3A1C}
-.person h3{font-size:1.08rem;font-weight:800}
-.person p{font-size:.92rem;color:var(--fg-2)}
-.roles{margin-top:28px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
-@media (max-width:1000px){.roles{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:480px){.roles{grid-template-columns:1fr}}
-.role{border-top:3px solid var(--line-strong);padding-top:12px;display:grid;gap:4px}
-.role b{font:800 1rem var(--f-display)}
-.role span{font-size:.88rem;color:var(--fg-2)}
-.crew{margin-top:28px;font-size:.92rem;color:var(--fg-2);max-width:90ch}
-.places{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-.place{display:inline-flex;gap:8px;align-items:center;padding:8px 14px;border-radius:var(--r-full);background:var(--surface);border:1px solid var(--line);font-weight:700;font-size:.92rem}
-.place svg{width:18px;height:18px;color:var(--brand-ink)}
+.passos-mudanca{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--espaco-5)}
+@media (max-width:900px){.passos-mudanca{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.passos-mudanca{grid-template-columns:1fr}}
+.passos-mudanca li{display:grid;gap:var(--espaco-2);align-content:start}
+.passos-mudanca p{color:var(--cor-text-secondary)}
+.unidade{padding:0;overflow:hidden;gap:0}
+.unidade .faixa{height:8px}
+.unidade .conteudo{padding:var(--espaco-5);display:grid;gap:var(--espaco-3)}
+.unidade ol{display:grid;gap:var(--espaco-2)}
+.unidade ol li{display:flex;gap:var(--espaco-3);align-items:center}
+.unidade ol li .passo{width:28px;height:28px;font-size:12px}
+.u1 .faixa,.u1 .passo{background:var(--cor-unidade-1)} .u2 .faixa,.u2 .passo{background:var(--cor-unidade-2)} .u3 .faixa,.u3 .passo{background:var(--cor-unidade-3)} .u4 .faixa,.u4 .passo{background:var(--cor-unidade-4)}
+.unidade .passo{color:var(--areia-900)}
+.tempo{display:grid;gap:0;max-width:760px}
+.tempo li{display:grid;grid-template-columns:96px 1fr;gap:var(--espaco-5);padding-block:var(--espaco-4);border-top:var(--borda-fina) solid var(--cor-border-default)}
+.tempo time{font:800 22px/30px var(--f-titulo);color:var(--cor-text-brand)}
+.tempo p{color:var(--cor-text-secondary);padding-top:3px}
+.pessoa{grid-template-columns:56px 1fr;align-items:center;gap:var(--espaco-4)}
+.pessoa .ini{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font:800 18px/1 var(--f-titulo);background:var(--cor-bg-brand-subtle);color:var(--cor-text-brand)}
+.pessoa p{color:var(--cor-text-secondary)}
+.equipe-nomes{margin-top:var(--espaco-6);color:var(--cor-text-secondary);max-width:820px}
 
-/* Apoiar */
-.support{background:var(--strong);color:var(--on-strong);border-radius:var(--r-xl);padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:1fr 1fr;gap:40px}
-@media (max-width:900px){.support{grid-template-columns:1fr}}
-.support h2{color:var(--on-strong);font-size:clamp(1.9rem,3.4vw,2.5rem);font-weight:900}
-.support .lead{color:var(--on-strong);opacity:.9}
-.support .eyebrow{color:var(--strong-2)}
-.ways{list-style:none;padding:0;margin:0;display:grid;gap:12px}
-.ways li{background:color-mix(in srgb,var(--on-strong) 10%,transparent);border-radius:var(--r-lg);padding:16px 18px;display:grid;gap:2px}
-.ways b{font:800 1.05rem var(--f-display)}
-.ways span{font-size:.93rem;opacity:.92}
+.estudos{display:grid;gap:var(--espaco-5);max-width:880px}
+.estudo .meta-estudo{display:flex;flex-wrap:wrap;gap:var(--espaco-2)}
+.estudo .quem{color:var(--cor-text-secondary)}
 
-/* Formulários */
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form-grid .full{grid-column:1/-1}
-@media (max-width:620px){.form-grid{grid-template-columns:1fr}}
-.contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}
-@media (max-width:900px){.contact{grid-template-columns:1fr}}
-.form-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);padding:clamp(22px,4vw,36px);box-shadow:var(--shadow-md)}
-.status{margin-top:14px;border-radius:var(--r-md);padding:12px 14px;font-size:.95rem;background:var(--sal-sub);color:var(--sal-ink);font-weight:600}
-.wa{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;background:var(--brand-subtle);border-radius:var(--r-xl);padding:clamp(24px,4vw,40px)}
-@media (max-width:860px){.wa{grid-template-columns:1fr}}
-.wa h2{font-size:clamp(1.6rem,3vw,2.1rem);font-weight:900}
-.wa form{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
-.wa .field{min-width:min(100%,260px)}
+.grupo{display:grid;grid-template-columns:280px 1fr;gap:var(--espaco-6);padding-block:var(--espaco-7);border-top:var(--borda-fina) solid var(--cor-border-default)}
+@media (max-width:860px){.grupo{grid-template-columns:1fr;gap:var(--espaco-5)}}
+.grupo .sobre{display:grid;gap:var(--espaco-2);align-content:start}
+.grupo .sobre p{color:var(--cor-text-secondary)}
+.logos{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:var(--espaco-4)}
+.logo-tile{background:var(--cor-bg-surface);border:var(--borda-fina) solid var(--cor-border-default);border-radius:var(--raio-md);min-height:112px;padding:var(--espaco-4);display:grid;place-items:center;text-align:center;gap:var(--espaco-1)}
+.logo-tile b{font:800 18px/22px var(--f-titulo);color:var(--cor-text-primary)}
+.logo-tile span{font:600 12px/16px var(--f-corpo);color:var(--cor-text-secondary)}
+.logo-tile.vazio{border-style:dashed;background:transparent}
 
-/* FAQ */
-.faq{display:grid;gap:10px;max-width:860px}
-.faq details{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:0 22px}
-.band.alt .faq details{background:var(--bg)}
-.faq summary{cursor:pointer;list-style:none;font:800 1.08rem var(--f-display);padding:18px 0;display:flex;justify-content:space-between;gap:16px;align-items:center}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font:900 1.5rem var(--f-display);color:var(--brand-ink);flex:none}
-.faq details[open] summary::after{content:"−"}
-.faq details p{padding:0 0 20px;color:var(--fg-2);max-width:70ch}
+.etapas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--espaco-5)}
+@media (max-width:820px){.etapas{grid-template-columns:1fr}}
+.etapas li{display:grid;gap:var(--espaco-2);align-content:start}
+.etapas .passo{margin-bottom:var(--espaco-2)}
+.etapas p{color:var(--cor-text-secondary)}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:var(--espaco-4) var(--espaco-5)}
+.form .cheio{grid-column:1/-1}
+@media (max-width:620px){.form{grid-template-columns:1fr}}
+.contato{display:grid;grid-template-columns:.8fr 1.2fr;gap:var(--espaco-8);align-items:start}
+@media (max-width:900px){.contato{grid-template-columns:1fr;gap:var(--espaco-6)}}
 
 /* Rodapé */
-.site-foot{background:var(--muted);border-top:1px solid var(--line);padding-block:56px 40px}
-.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:32px}
-@media (max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
-@media (max-width:520px){.foot-grid{grid-template-columns:1fr}}
-.foot-logo{width:160px;background:var(--logo-ground);border-radius:var(--r-lg);padding:10px}
-.foot-grid h4{font-size:.95rem;font-weight:800;margin-bottom:10px}
-.foot-grid ul{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:.93rem}
-.foot-grid a{color:var(--fg-2);text-decoration:none}
-.foot-grid a:hover{color:var(--fg);text-decoration:underline}
-.foot-note{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:.85rem;color:var(--fg-3);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
-
-/* Parceiros */
-.p-hero{padding-block:clamp(48px,7vw,80px) 24px}
-.p-hero h1{font-size:clamp(2.3rem,5vw,3.6rem);font-weight:900;letter-spacing:-.02em}
-.p-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
-.p-tabs a{font:800 .92rem var(--f-display);text-decoration:none;color:var(--fg);padding:10px 16px;border-radius:var(--r-full);border:1.5px solid var(--line-strong)}
-.p-tabs a:hover{background:var(--brand-subtle)}
-.p-group{padding-block:40px;border-top:1px solid var(--line);display:grid;grid-template-columns:280px 1fr;gap:32px}
-@media (max-width:860px){.p-group{grid-template-columns:1fr}}
-.p-group h2{font-size:1.5rem;font-weight:800}
-.p-group > div:first-child p{color:var(--fg-2);font-size:.95rem;margin-top:8px}
-.p-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
-.org{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px;display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:center;min-height:96px;min-width:0}
-.org .mono{width:52px;height:52px;border-radius:var(--r-md);display:grid;place-items:center;font:900 .68rem var(--f-display);letter-spacing:0;overflow:hidden;background:var(--gs);color:var(--gi);text-align:center;line-height:1.05}
-.org b{font:800 .98rem/1.25 var(--f-display);display:block}
-.org span{font-size:.83rem;color:var(--fg-3);display:block;margin-top:2px}
-.org.pending{border-style:dashed;background:transparent}
-.g1{--gs:var(--ceu-sub);--gi:var(--ceu-ink)} .g2{--gs:var(--ouro-sub);--gi:var(--ouro-ink)} .g3{--gs:var(--sal-sub);--gi:var(--sal-ink)} .g4{--gs:var(--ter-sub);--gi:var(--ter-ink)}
-.tiers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-@media (max-width:1000px){.tiers{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.tiers{grid-template-columns:1fr}}
-.tier{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px;display:grid;gap:10px;align-content:start}
-.tier h3{font-size:1.15rem;font-weight:800}
-.tier ul{margin:0;padding-left:18px;color:var(--fg-2);font-size:.93rem;display:grid;gap:4px}
-.source{font-size:.85rem;color:var(--fg-3);margin-top:16px}
+.rodape-site{background:var(--cor-bg-surface-muted);padding-block:var(--espaco-8) var(--espaco-6)}
+.rodape-site .colunas{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:var(--espaco-6)}
+@media (max-width:760px){.rodape-site .colunas{grid-template-columns:1fr}}
+.rodape-site img{width:160px;height:auto}
+.rodape-site ul{display:grid;gap:var(--espaco-2)}
+.rodape-site a{text-decoration:none;color:var(--cor-text-secondary)}
+.rodape-site a:hover{color:var(--cor-text-primary);text-decoration:underline}
+.rodape-site .nota{margin-top:var(--espaco-7);padding-top:var(--espaco-4);border-top:var(--borda-fina) solid var(--cor-border-default);display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--espaco-3);color:var(--cor-text-secondary)}
 </style>
 
-<header class="site-head">
-  <div class="wrap head-in">
-    <a class="brand" href="#inicio" aria-label="Pais e Cuidadores são Construtores de Cérebros, página inicial">
-      <small>pais e cuidadores são</small>
-      <b>Construtores de Cérebros</b>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-seta" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></g></symbol>
+  <symbol id="i-calendario" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></g></symbol>
+  <symbol id="i-local" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-11.5a7 7 0 0 1 14 0C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></g></symbol>
+  <symbol id="i-conversa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4V5z"/><path d="M8 9.5h8M8 12.5h5"/></g></symbol>
+  <symbol id="i-coracao" viewBox="0 0 24 24"><path d="M12 20s-8-4.9-8-10.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 2.5C20 15.1 12 20 12 20z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-livro" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H20v14H5.5A1.5 1.5 0 0 0 4 18.5v-14z"/><path d="M4 18.5A1.5 1.5 0 0 0 5.5 20H20"/></g></symbol>
+  <symbol id="i-mais" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+</svg>
+
+<header class="topo-site">
+  <div class="wrap">
+    <a class="marca" href="#inicio" aria-label="Pais e Cuidadores são Construtores de Cérebros, início">
+      <small>pais e cuidadores são</small><b>Construtores de Cérebros</b>
     </a>
-    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu
-    </button>
-    <nav class="nav" id="nav" aria-label="Principal">
-      <a href="#programa">O programa</a>
-      <a href="#como-funciona">Como funciona</a>
-      <a href="#familias">Para famílias</a>
-      <a href="#pesquisa">Pesquisa</a>
-      <a href="#parceiros" data-view-link="parceiros">Parceiros</a>
-      <a class="btn btn-primary" href="#apoiar">Leve ao seu município</a>
+    <button class="abre-menu" id="abre-menu" aria-expanded="false" aria-controls="menu"><svg class="ico ico-18" style="color:currentColor"><use href="#i-menu"/></svg>Menu</button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a href="#sobre" data-v="sobre">Sobre</a>
+      <a href="#familias" data-v="familias">Para famílias</a>
+      <a href="#pesquisa" data-v="pesquisa">Pesquisa</a>
+      <a href="#parceiros" data-v="parceiros">Parceiros</a>
+      <a class="botao botao--primario" href="#apoie">Leve ao seu município</a>
     </nav>
   </div>
 </header>
 
 <main>
-<!-- ======================= INÍCIO ======================= -->
-<div id="view-home">
-
-  <section class="hero" id="inicio">
-    <div class="wrap hero-grid">
-      <div class="hero-text">
-        <span class="eyebrow">Parentalidade positiva · Universidade Federal do Ceará</span>
-        <h1>Pais e cuidadores são <em>construtores</em> de cérebros</h1>
-        <p class="lead">Em 11 encontros no CRAS do bairro, mães, pais, avós, cuidadores e gestantes descobrem como as conversas do dia a dia ajudam o cérebro das crianças de 0 a 5 anos a crescer.</p>
-        <p class="script">um passo de cada vez</p>
-        <div class="btn-row">
-          <a class="btn btn-primary" href="#familias">Sou mãe, pai ou cuidador
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a class="btn btn-outline" href="#apoiar">Quero levar o programa</a>
-        </div>
-        <div class="hero-facts">
-          <span><i></i>11 encontros semanais</span>
-          <span><i></i>até 1h30 cada</span>
-          <span><i></i>crianças de 0 a 5 anos</span>
+<!-- ============ INÍCIO ============ -->
+<div class="view" data-view="inicio">
+  <section class="hero">
+    <div class="wrap">
+      <div class="texto">
+        <span class="t-sobretitulo">Programa de parentalidade positiva da UFC</span>
+        <h1 class="t-display">Pais e cuidadores são construtores de cérebros</h1>
+        <p class="t-corpo-g sec">Em 11 encontros no CRAS do bairro, famílias com crianças de 0 a 5 anos e gestantes descobrem como as conversas do dia a dia ajudam o cérebro a crescer.</p>
+        <p class="t-acento-g">um passo de cada vez</p>
+        <div class="botoes">
+          <a class="botao botao--grande botao--primario" href="#familias">Ver dicas para minha família<svg><use href="#i-seta"/></svg></a>
+          <a class="botao botao--grande botao--contorno" href="#sobre">Conhecer o programa</a>
         </div>
       </div>
-      <div class="hero-art">
-        <div class="disc"><img src="assets/logo.png" width="720" height="604" alt="Logo do programa: um cérebro desenhado com uma única linha amarela e o texto Pais e cuidadores são construtores de cérebros em letra cursiva."></div>
+      <div class="arte"><div class="circulo"><img src="assets/logo.png" width="720" height="604" alt="Logo: cérebro desenhado com uma linha amarela contínua e o texto Pais e cuidadores são construtores de cérebros em letra cursiva."></div></div>
+    </div>
+  </section>
+
+  <section class="secao branca" aria-labelledby="h-dicas">
+    <div class="wrap">
+      <div class="linha-titulo">
+        <div class="cabeca"><span class="t-sobretitulo">Para famílias</span><h2 class="t-h1" id="h-dicas">Dicas para o dia a dia</h2></div>
+        <a class="botao botao--texto" href="#familias">Ver todas as dicas<svg><use href="#i-seta"/></svg></a>
+      </div>
+      <div class="grade-4" id="dicas-destaque"></div>
+      <div class="buscados">
+        <span class="t-rotulo-m">Mais buscados:</span>
+        <a class="tag tag--areia" href="#familias" data-busca="leitura">Leitura</a>
+        <a class="tag tag--areia" href="#familias" data-busca="conversa">Conversar com o bebê</a>
+        <a class="tag tag--areia" href="#familias" data-busca="rotina">Rotina</a>
+        <a class="tag tag--areia" href="#familias" data-busca="emoções">Birra e emoções</a>
+        <a class="tag tag--areia" href="#familias" data-busca="matemática">Matemática</a>
+        <a class="tag tag--areia" href="#familias" data-busca="balbucio">Balbucio</a>
       </div>
     </div>
   </section>
 
-  <section class="band alt" id="programa">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">O programa</span>
-        <h2 class="h2">Os primeiros anos são a grande janela de oportunidades do cérebro</h2>
-        <p class="lead">O programa ensina, em grupo e com linguagem simples, que conversar, brincar e ler com a criança nas tarefas de todo dia é o que constrói as conexões do cérebro. O foco é o desenvolvimento da linguagem.</p>
-      </div>
-      <div class="cards-3">
-        <article class="card">
-          <div class="icon-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-8-4.9-8-10.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 2.5C20 15.1 12 20 12 20z"/></svg></div>
-          <h3>Para quem</h3>
-          <p>Mães, pais, avós e outros cuidadores de crianças de 0 a 5 anos, e também gestantes. A prioridade são famílias em situação de vulnerabilidade social.</p>
-        </article>
-        <article class="card">
-          <div class="icon-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-11.5a7 7 0 0 1 14 0C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div>
-          <h3>Onde</h3>
-          <p>No CRAS, dentro do Serviço de Convivência e Fortalecimento de Vínculos. Também em creches, escolas de educação infantil e organizações comunitárias.</p>
-        </article>
-        <article class="card">
-          <div class="icon-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/><path d="M8 9.5h8M8 12.5h5"/></svg></div>
-          <h3>Como</h3>
-          <p>Um encontro por semana, de até 1h30, conduzido por um facilitador e um auxiliar formados pelo projeto. Enquanto os adultos participam, as crianças brincam com a "tia" ou o "tio".</p>
-        </article>
-      </div>
-
-      <h3 style="margin-top:56px;font-size:1.3rem;font-weight:800">Teoria da mudança</h3>
-      <ol class="toc" aria-label="Teoria da mudança do programa">
-        <li><b>Os cuidadores entendem melhor</b><span>como a criança se desenvolve e por que as interações importam.</span></li>
-        <li><b>As conversas aumentam</b><span>em quantidade e em qualidade entre adultos e crianças.</span></li>
-        <li><b>A criança se desenvolve</b><span>na linguagem, no pensamento e nas emoções.</span></li>
-        <li><b>Resultados para a vida toda</b><span>mais aprendizado na escola e mais oportunidades no futuro.</span></li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="band" id="como-funciona">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">Como funciona</span>
-        <h2 class="h2">A trilha dos 11 encontros</h2>
-        <p class="lead">O currículo foi criado por Meredith Rowe e Lizzie Baird, da Universidade Harvard, e adaptado ao Brasil pela equipe da UFC. São quatro unidades, cada uma com uma cor.</p>
-      </div>
-      <svg class="trail-line" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true"><path d="M4 28 C 90 2, 170 54, 260 28 S 430 2, 520 28 S 690 54, 780 28 S 950 2, 1040 28 S 1150 50, 1196 28"/></svg>
-      <div class="units">
-        <article class="unit u1"><div class="unit-band"></div><div class="unit-body">
-          <span class="unit-tag">Unidade 1 · encontros 1 a 4</span>
-          <h3>Desenvolvimento na primeira infância</h3>
-          <p>Como o cérebro se forma e por que o comportamento da criança faz parte do desenvolvimento.</p>
-          <ol class="sessions">
-            <li><span>1</span>Aprendendo o tempo todo</li>
-            <li><span>2</span>Parentalidade importa</li>
-            <li><span>3</span>Marcos do desenvolvimento</li>
-            <li><span>4</span>Pais e cuidadores são construtores de cérebros</li>
-          </ol>
-        </div></article>
-        <article class="unit u2"><div class="unit-band"></div><div class="unit-body">
-          <span class="unit-tag">Unidade 2 · encontros 5 a 7</span>
-          <h3>Interações que constroem a linguagem</h3>
-          <p>Estratégias simples para conversar e aprender em casa, de acordo com a idade.</p>
-          <ol class="sessions" start="5">
-            <li><span>5</span>Apoiando os bebês em casa</li>
-            <li><span>6</span>Apoiando as crianças pequenas em casa</li>
-            <li><span>7</span>Apoiando os pré-escolares em casa</li>
-          </ol>
-        </div></article>
-        <article class="unit u3"><div class="unit-band"></div><div class="unit-body">
-          <span class="unit-tag">Unidade 3 · encontros 8 a 10</span>
-          <h3>Estratégias no ambiente de casa</h3>
-          <p>Emoções, leitura de livros e matemática no cotidiano da família.</p>
-          <ol class="sessions" start="8">
-            <li><span>8</span>Desenvolvimento socioemocional</li>
-            <li><span>9</span>Leitura de livro compartilhada</li>
-            <li><span>10</span>Matemática lúdica</li>
-          </ol>
-        </div></article>
-        <article class="unit u4"><div class="unit-band"></div><div class="unit-body">
-          <span class="unit-tag">Unidade 4 · encontro 11</span>
-          <h3>Revisão</h3>
-          <p>Retomada de tudo e a certeza de que cada cuidador faz diferença.</p>
-          <ol class="sessions" start="11">
-            <li><span>11</span>Interações do dia a dia</li>
-          </ol>
-        </div></article>
-      </div>
-      <p class="trail-note">Cada encontro tem dinâmicas, vídeos curtos e uma tarefa simples para fazer em casa durante a semana.</p>
-    </div>
-  </section>
-
-  <section class="band alt" aria-labelledby="numeros-titulo">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">Em números</span>
-        <h2 class="h2" id="numeros-titulo">O programa em números</h2>
-      </div>
-      <div class="stats">
-        <div class="stat"><b>11</b><span>encontros semanais em grupo</span><cite>Fonte: currículo do programa</cite></div>
-        <div class="stat"><b>1h30</b><span>de duração máxima por encontro</span><cite>Fonte: Corrêa (2023), CAEN/UFC</cite></div>
-        <div class="stat"><b>0–5<small>anos</small></b><span>idade das crianças das famílias atendidas</span><cite>Fonte: currículo do programa</cite></div>
-        <div class="stat"><b>3</b><span>municípios do Ceará com ações até 2023: Fortaleza, Caucaia e Missão Velha</span><cite>Fonte: Relatos da equipe (2023)</cite></div>
-        <div class="stat pending"><b>?</b><span>famílias atendidas</span><cite><span class="todo">dado a confirmar</span></cite></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="band" id="familias">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">Para famílias</span>
-        <h2 class="h2">Dicas para o dia a dia</h2>
-        <p class="lead">Ideias que cabem na rotina, sem precisar de brinquedo caro nem de tempo extra. Escolha a fase da sua criança.</p>
-      </div>
-      <div class="fam-grid">
-        <div>
-          <div class="chips" role="group" aria-label="Filtrar dicas por fase">
-            <button class="chip" type="button" data-fase="todas" aria-pressed="true">Todas</button>
-            <button class="chip" type="button" data-fase="gestacao" aria-pressed="false">Gestação</button>
-            <button class="chip" type="button" data-fase="bebes" aria-pressed="false">Bebês · 0 a 18 meses</button>
-            <button class="chip" type="button" data-fase="pequenas" aria-pressed="false">Crianças pequenas · 1,5 a 3 anos</button>
-            <button class="chip" type="button" data-fase="maiores" aria-pressed="false">Crianças maiores · 3 a 5 anos</button>
-          </div>
-          <div class="tips" id="tips" aria-live="polite"></div>
-        </div>
-        <aside class="gloss" aria-labelledby="gloss-titulo">
-          <h3 id="gloss-titulo">Pequeno glossário</h3>
-          <p class="small">As palavras que aparecem nos encontros, explicadas de um jeito simples.</p>
-          <div class="field">
-            <label for="gloss-q">Buscar uma palavra</label>
-            <input class="input" id="gloss-q" type="search" placeholder="Ex.: balbucio, rotina, leitura" autocomplete="off">
-          </div>
-          <div class="popular" aria-label="Mais buscadas">
-            <button type="button" data-q="leitura">leitura</button>
-            <button type="button" data-q="conversa">conversa</button>
-            <button type="button" data-q="rotina">rotina</button>
-            <button type="button" data-q="balbucio">balbucio</button>
-            <button type="button" data-q="estresse">estresse</button>
-          </div>
-          <dl id="gloss-list"></dl>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <section class="band alt" aria-label="Citação e depoimentos">
-    <div class="wrap">
-      <figure class="quote">
-        <div class="mark" aria-hidden="true">“</div>
-        <div>
-          <blockquote>O afeto é a fita isolante das ligações entre os neurônios.</blockquote>
-          <figcaption>Flávio Cunha, Rice University, pesquisador do projeto</figcaption>
-        </div>
-      </figure>
-      <div class="voices">
-        <div class="voice"><b>Depoimento de uma mãe</b>Espaço para a fala de uma participante, com nome e foto apenas se ela autorizar. <span class="todo">a coletar</span></div>
-        <div class="voice"><b>Depoimento de um avô ou pai</b>Mostrar a diversidade de cuidadores ajuda outras famílias a se verem no programa. <span class="todo">a coletar</span></div>
-        <div class="voice"><b>Depoimento de uma facilitadora</b>O olhar de quem conduz os grupos no CRAS. <span class="todo">a coletar</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="band" id="pesquisa">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">Pesquisa e resultados</span>
-        <h2 class="h2">O que a pesquisa mostra</h2>
-        <p class="lead">O programa nasceu dentro da universidade e é acompanhado por estudos desde o primeiro grupo. Estes são os trabalhos produzidos no CAEN/UFC.</p>
-      </div>
-      <div class="studies">
-        <article class="study">
-          <div class="meta"><span class="pill y">Dissertação de mestrado</span><span class="pill">2023</span></div>
-          <h3>Ensaios sobre o programa de parentalidade “Pais e Cuidadores são Construtores de Cérebros”</h3>
-          <p class="who">Camila Guedes Corrêa · orientação de Guilherme Irffi · CAEN/UFC</p>
-          <p class="finding"><b>Principal achado</b>Depois dos 11 encontros, os cuidadores passaram a falar de forma mais específica sobre como apoiar o desenvolvimento da criança em casa, usando os conceitos trabalhados no grupo.</p>
-          <p class="who">Método: marco lógico, teoria da mudança e grupos focais antes e depois da participação.</p>
-        </article>
-        <article class="study">
-          <div class="meta"><span class="pill y">Tese de doutorado</span><span class="pill">2025</span></div>
-          <h3>Um passo de cada vez: a implementação de um projeto de parentalidade positiva com foco no desenvolvimento de linguagem de crianças entre 0 e 5 anos</h3>
-          <p class="who">Isabela Braga Sales · orientação de Guilherme Irffi · CAEN/UFC</p>
-          <p class="finding"><b>Tema</b>Como o programa foi levado do papel para os grupos: desafios e aprendizados da implementação. <span class="todo">resumir achados</span></p>
-        </article>
-        <article class="study">
-          <div class="meta"><span class="pill y">Trabalho de conclusão de curso</span><span class="pill">2025</span></div>
-          <h3>A relação entre ambiente familiar e desenvolvimento infantil: evidências do projeto “Pais e Cuidadores são Construtores de Cérebros”</h3>
-          <p class="who">Samira Melo Nogueira · orientação de Guilherme Irffi · Economia/UFC</p>
-          <p class="finding"><b>Tema</b>Como o ambiente da casa se relaciona com o desenvolvimento das crianças atendidas. <span class="todo">resumir achados</span></p>
-        </article>
-        <article class="study">
-          <div class="meta"><span class="pill y">Trabalho de conclusão de curso</span><span class="pill">2023</span></div>
-          <h3>Nudge e suas abordagens: quando a manipulação é uma escolha</h3>
-          <p class="who">Ana Rayssa Lopes Lyra · Economia/UFC</p>
-          <p class="finding"><b>Tema</b>Estudo relacionado sobre os pequenos empurrões de comportamento, base para pensar lembretes e mensagens às famílias.</p>
-        </article>
-      </div>
-      <div class="pubs"><strong>Materiais do projeto:</strong>
-        <span class="pill">Glossário</span><span class="pill">Relatos: as experiências de aprender o tempo todo</span><span class="pill">Parentalidade Positiva Importa</span>
-      </div>
-
-      <ol class="timeline" aria-label="Linha do tempo do programa">
-        <li><time>2020</time><p>No I Desafio Universitário pela Primeira Infância, a equipe recebe o currículo de Meredith Rowe, de Harvard.</p></li>
-        <li><time>2021</time><p>Formação da equipe com as autoras do currículo e primeiros grupos internos de prática.</p></li>
-        <li><time>2022</time><p>Grupo piloto aos sábados no CAEN/UFC e aprovação do apoio do CNPq (Pró-Humanidades).</p></li>
-        <li><time>2023</time><p>Grupos no PROSSICA, em Fortaleza, e no CEI Olga &amp; Parsifal Barroso, em Caucaia. Chegada à zona rural de Missão Velha.</p></li>
-        <li><time>2025</time><p>Tese de doutorado avalia a implementação do programa.</p></li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="band alt" id="quem-faz">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="eyebrow">Quem faz</span>
-        <h2 class="h2">Economistas, psicólogas e educadores juntos pela primeira infância</h2>
-      </div>
-      <div class="team">
-        <div class="person"><div class="avatar">GI</div><div><h3>Guilherme Irffi</h3><p>Professor do CAEN/UFC e coordenador do programa no Brasil.</p></div></div>
-        <div class="person"><div class="avatar">MR</div><div><h3>Meredith Rowe e Lizzie Baird</h3><p>Universidade Harvard. Autoras do currículo da intervenção.</p></div></div>
-        <div class="person"><div class="avatar">FC</div><div><h3>Flávio Cunha</h3><p>Rice University. Coordena o projeto de pesquisa.</p></div></div>
-      </div>
-      <div class="roles" aria-label="Papéis nos encontros">
-        <div class="role"><b>Facilitador(a)</b><span>Conduz o encontro e incentiva as conversas.</span></div>
-        <div class="role"><b>Auxiliar</b><span>Acolhe as famílias e organiza materiais e dinâmicas.</span></div>
-        <div class="role"><b>Observador(a)</b><span>Acompanha se o currículo está sendo seguido.</span></div>
-        <div class="role"><b>Treinador(a)</b><span>Forma novas pessoas para a equipe.</span></div>
-        <div class="role"><b>Tia ou tio</b><span>Brinca com as crianças durante o encontro.</span></div>
-      </div>
-      <p class="crew"><strong>Equipe de pesquisa e intervenção:</strong> Ana Rayssa Lopes, Brysa Fernandes, Camila de Freitas, Camila Guedes Corrêa, Gabriella Nogueira, Isabel Fontgalland, Isabela Braga Sales, José Carlos, Juliana Cavalcanti, Kelly Samá, Laila Monteiro, Letícia Lima, Maria Cecília Bonfim, Maria Helena Campelo, Maria Fiebig, Samira Melo e Walacy Maciel.</p>
-      <div class="places" aria-label="Onde o programa já esteve">
-        <span class="place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-11.5a7 7 0 0 1 14 0C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Fortaleza · CAEN/UFC e PROSSICA</span>
-        <span class="place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-11.5a7 7 0 0 1 14 0C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Caucaia · CEI Olga &amp; Parsifal Barroso</span>
-        <span class="place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-11.5a7 7 0 0 1 14 0C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Missão Velha · Creche Maria Hilda</span>
-        <span class="place"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-11.5a7 7 0 0 1 14 0C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>CRAS atendidos <span class="todo">a confirmar</span></span>
-      </div>
-    </div>
-  </section>
-
-  <section class="band" id="apoiar">
-    <div class="wrap">
-      <div class="support">
-        <div style="display:grid;gap:18px;align-content:start">
-          <span class="eyebrow">Para gestores e parceiros</span>
-          <h2>Leve o programa ao seu município</h2>
-          <p class="lead">O currículo já está adaptado, a equipe forma facilitadores locais e a pesquisa acompanha os resultados. O seu município ou organização entra com o espaço e as famílias.</p>
-          <div class="btn-row"><a class="btn btn-invert" href="#contato">Falar com a equipe</a><a class="btn btn-ghost-invert" href="#parceiros">Ver parceiros</a></div>
-        </div>
-        <ul class="ways">
-          <li><b>Prefeituras e secretarias</b><span>Implantar os grupos nos CRAS, dentro do Serviço de Convivência e Fortalecimento de Vínculos.</span></li>
-          <li><b>Creches e organizações</b><span>Receber grupos de cuidadores e formar a própria equipe.</span></li>
-          <li><b>Financiadores</b><span>Apoiar a formação de facilitadores, os materiais e a avaliação.</span></li>
-          <li><b>Pesquisadores</b><span>Somar-se à avaliação de impacto e aos estudos sobre primeira infância.</span></li>
+  <section class="secao" aria-labelledby="h-como">
+    <div class="wrap dois">
+      <div class="texto">
+        <span class="t-sobretitulo">Como funciona</span>
+        <h2 class="t-h1" id="h-como">Onze encontros, um passo de cada vez</h2>
+        <p class="t-corpo-g sec">Os grupos se reúnem uma vez por semana no CRAS. Um facilitador conduz conversas, vídeos curtos e brincadeiras. A cada encontro, a família leva uma ideia nova para casa.</p>
+        <ul class="fatos">
+          <li><svg class="ico"><use href="#i-calendario"/></svg>1 encontro por semana, de até 1h30</li>
+          <li><svg class="ico"><use href="#i-local"/></svg>No CRAS do bairro, em grupo</li>
+          <li><svg class="ico"><use href="#i-coracao"/></svg>As crianças brincam com a equipe durante o encontro</li>
         </ul>
+        <div><a class="botao botao--contorno" href="#sobre">Ver os 11 encontros</a></div>
       </div>
-    </div>
-  </section>
-
-  <section class="band alt" id="contato">
-    <div class="wrap contact">
-      <div class="sec-head" style="margin:0">
-        <span class="eyebrow">Contato</span>
-        <h2 class="h2">Vamos conversar</h2>
-        <p class="lead">Conte quem você é e o que gostaria de fazer. A equipe responde por e-mail.</p>
-        <p style="color:var(--fg-2)">E-mail: <span class="todo">a confirmar</span><br>CAEN/UFC, Fortaleza (CE)</p>
-      </div>
-      <form class="form-card" id="form-contato" novalidate>
-        <div class="form-grid">
-          <div class="field"><label for="c-nome">Seu nome</label><input class="input" id="c-nome" name="nome" required autocomplete="name"></div>
-          <div class="field"><label for="c-email">E-mail</label><input class="input" id="c-email" name="email" type="email" required autocomplete="email"></div>
-          <div class="field"><label for="c-inst">Instituição</label><input class="input" id="c-inst" name="instituicao" placeholder="Ex.: Secretaria de Assistência Social"></div>
-          <div class="field"><label for="c-mun">Município</label><input class="input" id="c-mun" name="municipio" placeholder="Ex.: Sobral (CE)"></div>
-          <div class="field full"><label for="c-tipo">Você quer</label>
-            <select class="input" id="c-tipo" name="tipo">
-              <option>Levar o programa ao meu município</option>
-              <option>Receber um grupo na minha organização</option>
-              <option>Apoiar ou financiar</option>
-              <option>Parceria de pesquisa</option>
-              <option>Participar como família</option>
-            </select></div>
-          <div class="field full"><label for="c-msg">Mensagem</label><textarea class="input" id="c-msg" name="mensagem"></textarea></div>
+      <div class="pilha">
+        <div class="card progresso" aria-label="Exemplo da trilha de encontros">
+          <div class="cab"><span class="t-rotulo-g">Sua trilha</span><span class="t-legenda sec">Encontro 5 de 11</span></div>
+          <div class="trilha" id="trilha"></div>
+          <div class="unidades"><span style="flex:4;background:var(--cor-unidade-1)"></span><span style="flex:3;background:var(--cor-unidade-2)"></span><span style="flex:3;background:var(--cor-unidade-3)"></span><span style="flex:1;background:var(--cor-unidade-4)"></span></div>
         </div>
-        <div class="btn-row" style="margin-top:18px"><button class="btn btn-primary" type="submit">Enviar mensagem</button></div>
-        <p class="status" id="contato-status" role="status" hidden></p>
-      </form>
-    </div>
-  </section>
-
-  <section class="band" aria-labelledby="wa-titulo">
-    <div class="wrap">
-      <div class="wa">
-        <div style="display:grid;gap:8px">
-          <h2 id="wa-titulo">Receba uma dica por semana no WhatsApp</h2>
-          <p style="color:var(--fg-2)">Uma ideia curta, toda segunda-feira, para a fase da sua criança.</p>
-        </div>
-        <form id="form-wa" novalidate>
-          <div class="field"><label for="wa-tel">Seu WhatsApp com DDD</label><input class="input" id="wa-tel" type="tel" inputmode="tel" placeholder="(85) 9 0000-0000" autocomplete="tel"></div>
-          <button class="btn btn-strong" type="submit">Quero receber</button>
-          <p class="status" id="wa-status" role="status" hidden style="flex-basis:100%"></p>
-        </form>
+        <article class="card encontro">
+          <div class="faixa"></div>
+          <div class="conteudo">
+            <div class="topo"><span class="tag tag--ceu">Unidade 2</span><span class="t-sobretitulo">Encontro 5</span></div>
+            <h3 class="t-h3">Apoiando os bebês em casa</h3>
+            <ul class="meta t-corpo-p">
+              <li><svg class="ico ico-18"><use href="#i-calendario"/></svg>Quinta-feira · 14h</li>
+              <li><svg class="ico ico-18"><use href="#i-local"/></svg>CRAS do bairro</li>
+            </ul>
+            <a class="botao botao--primario" href="#apoie" style="width:100%">Quero participar<svg><use href="#i-seta"/></svg></a>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="band alt" id="duvidas">
+  <section class="secao branca" aria-labelledby="h-numeros">
     <div class="wrap">
-      <div class="sec-head"><span class="eyebrow">Dúvidas</span><h2 class="h2">Perguntas frequentes</h2></div>
-      <div class="faq">
-        <details><summary>Quem pode participar dos encontros?</summary><p>Qualquer pessoa que cuida de uma criança de 0 a 5 anos: mãe, pai, avó, avô, tia, irmã mais velha, madrasta. Gestantes também são bem-vindas.</p></details>
-        <details><summary>Preciso levar a criança?</summary><p>Pode levar. Em vários grupos, uma "tia" ou um "tio" da equipe brinca com as crianças enquanto os adultos participam do encontro.</p></details>
-        <details><summary>Quanto tempo dura?</summary><p>São 11 encontros, um por semana, de até 1h30 cada. Ao todo, cerca de três meses.</p></details>
-        <details><summary>Quanto custa para a família?</summary><p>A participação nos grupos oferecidos no CRAS é gratuita. <span class="todo">confirmar</span></p></details>
-        <details><summary>O programa tem base científica?</summary><p>Sim. O currículo foi desenvolvido por pesquisadoras da Universidade Harvard e o programa é avaliado por pesquisadores da UFC desde o primeiro grupo piloto.</p></details>
-        <details><summary>Como levar o programa para a minha cidade?</summary><p>Preencha o formulário de contato escolhendo "Levar o programa ao meu município". A equipe explica as etapas: sensibilização, formação dos facilitadores e acompanhamento.</p></details>
+      <div class="cabeca centro"><span class="t-sobretitulo">Resultados</span><h2 class="t-h1" id="h-numeros">O programa em números</h2></div>
+      <div class="numeros">
+        <div class="numero"><b>11</b><p class="t-corpo-m">encontros semanais com as famílias</p><span class="t-legenda">Currículo do programa</span></div>
+        <div class="numero"><b>0 a 5</b><p class="t-corpo-m">anos é a idade das crianças, fase em que o cérebro mais se transforma</p><span class="t-legenda">Currículo do programa</span></div>
+        <div class="numero"><b>3</b><p class="t-corpo-m">municípios do Ceará com ações até 2023</p><span class="t-legenda">Relatos da equipe, 2023</span></div>
+      </div>
+      <div class="aviso aviso--sucesso destaque-pesquisa">
+        <svg class="ico"><use href="#i-check"/></svg>
+        <div>
+          <p class="t-rotulo-g titulo">O que a pesquisa mostra</p>
+          <p class="t-corpo-p">Depois dos 11 encontros, os cuidadores passaram a explicar com mais detalhe como apoiar o desenvolvimento da criança em casa. (Corrêa, 2023, CAEN/UFC)</p>
+          <p><a class="t-rotulo-m" href="#pesquisa" style="color:var(--cor-text-success)">Ver as pesquisas</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" aria-labelledby="h-quem">
+    <div class="wrap dois">
+      <figure class="citacao">
+        <blockquote>“O afeto é a fita isolante das ligações entre os neurônios.”</blockquote>
+        <figcaption class="t-corpo-m">Flávio Cunha, Rice University</figcaption>
+      </figure>
+      <div class="texto">
+        <span class="t-sobretitulo">Quem faz</span>
+        <h2 class="t-h1" id="h-quem">Da universidade para o CRAS</h2>
+        <p class="t-corpo-g sec">O currículo foi criado por pesquisadoras da Universidade Harvard e adaptado ao Brasil pela equipe do CAEN, na Universidade Federal do Ceará, com coordenação do professor Guilherme Irffi.</p>
+        <div><a class="botao botao--contorno" href="#sobre">Conhecer a equipe</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao branca" aria-labelledby="h-apoio">
+    <div class="wrap">
+      <div class="linha-titulo">
+        <div class="cabeca"><span class="t-sobretitulo">Parceiros</span><h2 class="t-h2" id="h-apoio">Quem apoia</h2></div>
+        <a class="botao botao--texto" href="#parceiros">Ver todos os parceiros<svg><use href="#i-seta"/></svg></a>
+      </div>
+      <div class="apoios">
+        <span class="apoio">Universidade Federal do Ceará</span><span class="apoio">Universidade Harvard</span><span class="apoio">Rice University</span><span class="apoio">CNPq</span><span class="apoio">Fundação Lemann</span><span class="apoio">IPREDE</span><span class="apoio">LEPES · USP</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao" aria-labelledby="h-chamada">
+    <div class="wrap">
+      <div class="chamada">
+        <div>
+          <h2 class="t-h1" id="h-chamada">Leve o programa ao seu município</h2>
+          <p class="t-corpo-g">A equipe forma facilitadores locais e acompanha os resultados. O município entra com o espaço e as famílias.</p>
+        </div>
+        <a class="botao botao--grande botao--claro" href="#apoie">Falar com a equipe<svg><use href="#i-seta"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao branca" aria-labelledby="h-duvidas">
+    <div class="wrap">
+      <div class="cabeca centro"><span class="t-sobretitulo">Dúvidas</span><h2 class="t-h1" id="h-duvidas">Perguntas frequentes</h2></div>
+      <div class="duvidas">
+        <details><summary>Quem pode participar?<svg><use href="#i-mais"/></svg></summary><p class="t-corpo-m">Qualquer pessoa que cuida de uma criança de 0 a 5 anos: mãe, pai, avó, avô, tia, irmã mais velha. Gestantes também são bem-vindas.</p></details>
+        <details><summary>Preciso levar a criança?<svg><use href="#i-mais"/></svg></summary><p class="t-corpo-m">Pode levar. Em vários grupos, alguém da equipe brinca com as crianças enquanto os adultos participam.</p></details>
+        <details><summary>Quanto tempo dura?<svg><use href="#i-mais"/></svg></summary><p class="t-corpo-m">São 11 encontros, um por semana, de até 1h30 cada. Ao todo, cerca de três meses.</p></details>
+        <details><summary>Quanto custa para a família?<svg><use href="#i-mais"/></svg></summary><p class="t-corpo-m">A participação nos grupos do CRAS é gratuita. <span class="pendente">a confirmar</span></p></details>
+        <details><summary>Como levar o programa para a minha cidade?<svg><use href="#i-mais"/></svg></summary><p class="t-corpo-m">Fale com a equipe pela página “Leve ao seu município”. Explicamos as etapas: sensibilização, formação de facilitadores e grupos com as famílias.</p></details>
       </div>
     </div>
   </section>
 </div>
 
-<!-- ======================= PARCEIROS ======================= -->
-<div id="view-parceiros" hidden>
-  <section class="p-hero">
+<!-- ============ SOBRE ============ -->
+<div class="view" data-view="sobre" hidden>
+  <header class="cab-pagina"><div class="wrap">
+    <span class="t-sobretitulo">Sobre o programa</span>
+    <h1 class="t-display">Os primeiros anos são a grande janela de oportunidades</h1>
+    <p class="t-corpo-g sec">O programa ensina, em grupo e com linguagem simples, que conversar, brincar e ler com a criança nas tarefas de todo dia constrói as conexões do cérebro. O foco é o desenvolvimento da linguagem.</p>
+  </div></header>
+
+  <section class="secao branca" aria-labelledby="h-para-quem">
     <div class="wrap">
-      <span class="eyebrow">Parceiros</span>
-      <h1>Quem constrói com a gente</h1>
-      <p class="lead" style="margin-top:16px">Universidades, institutos, fundações e o poder público tornam possível levar o programa às famílias. Cada parceiro contribui de um jeito: com pesquisa, recursos, espaço ou formação de equipes.</p>
-      <nav class="p-tabs" aria-label="Grupos de parceiros">
-        <a href="#parceiros" data-scroll="g-pesquisa">Pesquisa e universidades</a>
-        <a href="#parceiros" data-scroll="g-fomento">Fomento</a>
-        <a href="#parceiros" data-scroll="g-territorio">Primeira infância e territórios</a>
-        <a href="#parceiros" data-scroll="g-publico">Administração pública</a>
-        <a href="#parceiros" data-scroll="g-seja">Seja parceiro</a>
-      </nav>
+      <h2 class="t-h2" id="h-para-quem" style="margin-bottom:var(--espaco-6)">Para quem, onde e como</h2>
+      <div class="grade-3">
+        <div class="card"><svg class="ico" style="color:var(--cor-icon-brand)"><use href="#i-coracao"/></svg><h3 class="t-h4">Para quem</h3><p class="t-corpo-m sec">Mães, pais, avós e outros cuidadores de crianças de 0 a 5 anos, e gestantes. Prioridade para famílias em situação de vulnerabilidade social.</p></div>
+        <div class="card"><svg class="ico" style="color:var(--cor-icon-brand)"><use href="#i-local"/></svg><h3 class="t-h4">Onde</h3><p class="t-corpo-m sec">No CRAS, dentro do Serviço de Convivência e Fortalecimento de Vínculos. Também em creches e organizações comunitárias.</p></div>
+        <div class="card"><svg class="ico" style="color:var(--cor-icon-brand)"><use href="#i-conversa"/></svg><h3 class="t-h4">Como</h3><p class="t-corpo-m sec">Um encontro por semana, de até 1h30, com um facilitador e um auxiliar formados pelo projeto.</p></div>
+      </div>
     </div>
   </section>
-  <section class="wrap" style="padding-bottom:72px">
-    <div class="p-group" id="g-pesquisa">
-      <div><h2>Pesquisa e universidades</h2><p>Desenvolvem o currículo, formam as equipes e avaliam os resultados.</p></div>
-      <div class="p-grid g1" id="pg-pesquisa"></div>
+
+  <section class="secao" aria-labelledby="h-mudanca">
+    <div class="wrap">
+      <div class="cabeca"><span class="t-sobretitulo">Teoria da mudança</span><h2 class="t-h1" id="h-mudanca">O que o programa quer mudar</h2></div>
+      <ol class="passos-mudanca">
+        <li><span class="passo passo--concluido">1</span><h3 class="t-h4">Os cuidadores entendem melhor</h3><p class="t-corpo-m">como a criança se desenvolve e por que as interações importam.</p></li>
+        <li><span class="passo passo--concluido">2</span><h3 class="t-h4">As conversas aumentam</h3><p class="t-corpo-m">em quantidade e em qualidade entre adultos e crianças.</p></li>
+        <li><span class="passo passo--concluido">3</span><h3 class="t-h4">A criança se desenvolve</h3><p class="t-corpo-m">na linguagem, no pensamento e nas emoções.</p></li>
+        <li><span class="passo passo--atual">4</span><h3 class="t-h4">Resultados para a vida toda</h3><p class="t-corpo-m">mais aprendizado na escola e mais oportunidades no futuro.</p></li>
+      </ol>
     </div>
-    <div class="p-group" id="g-fomento">
-      <div><h2>Fomento</h2><p>Financiam a pesquisa, a formação e os materiais.</p></div>
-      <div class="p-grid g2" id="pg-fomento"></div>
-    </div>
-    <div class="p-group" id="g-territorio">
-      <div><h2>Primeira infância e territórios</h2><p>Instituições que recebem os grupos e aproximam o programa das famílias.</p></div>
-      <div class="p-grid g3" id="pg-territorio"></div>
-    </div>
-    <div class="p-group" id="g-publico">
-      <div><h2>Administração pública</h2><p>Secretarias e equipamentos públicos que levam os encontros aos CRAS.</p></div>
-      <div class="p-grid g4">
-        <div class="org pending"><div class="mono">CRAS</div><div><b>Secretarias municipais de assistência social</b><span class="todo">listar parceiros</span></div></div>
+  </section>
+
+  <section class="secao branca" aria-labelledby="h-curriculo">
+    <div class="wrap">
+      <div class="cabeca"><span class="t-sobretitulo">Currículo</span><h2 class="t-h1" id="h-curriculo">Os 11 encontros</h2><p class="t-corpo-g sec">Criado por Meredith Rowe e Lizzie Baird, da Universidade Harvard. São quatro unidades, cada uma com a sua cor.</p></div>
+      <div class="grade-4">
+        <article class="card unidade u1"><div class="faixa"></div><div class="conteudo"><span class="tag tag--ouro" style="justify-self:start">Unidade 1</span><h3 class="t-h4">Desenvolvimento na primeira infância</h3>
+          <ol class="t-corpo-p"><li><span class="passo">1</span>Aprendendo o tempo todo</li><li><span class="passo">2</span>Parentalidade importa</li><li><span class="passo">3</span>Marcos do desenvolvimento</li><li><span class="passo">4</span>Pais e cuidadores são construtores de cérebros</li></ol></div></article>
+        <article class="card unidade u2"><div class="faixa"></div><div class="conteudo"><span class="tag tag--ceu" style="justify-self:start">Unidade 2</span><h3 class="t-h4">Interações que constroem a linguagem</h3>
+          <ol class="t-corpo-p"><li><span class="passo">5</span>Apoiando os bebês em casa</li><li><span class="passo">6</span>Apoiando as crianças pequenas em casa</li><li><span class="passo">7</span>Apoiando os pré-escolares em casa</li></ol></div></article>
+        <article class="card unidade u3"><div class="faixa"></div><div class="conteudo"><span class="tag tag--salvia" style="justify-self:start">Unidade 3</span><h3 class="t-h4">Estratégias no ambiente de casa</h3>
+          <ol class="t-corpo-p"><li><span class="passo">8</span>Desenvolvimento socioemocional</li><li><span class="passo">9</span>Leitura de livro compartilhada</li><li><span class="passo">10</span>Matemática lúdica</li></ol></div></article>
+        <article class="card unidade u4"><div class="faixa"></div><div class="conteudo"><span class="tag tag--terracota" style="justify-self:start">Unidade 4</span><h3 class="t-h4">Revisão</h3>
+          <ol class="t-corpo-p"><li><span class="passo">11</span>Interações do dia a dia</li></ol></div></article>
       </div>
     </div>
-    <div class="p-group" id="g-seja" style="grid-template-columns:1fr">
-      <div class="sec-head" style="margin-bottom:8px"><h2 class="h2">Como ser parceiro</h2><p class="lead">Existem quatro formas de apoiar. Todas começam com uma conversa com a equipe.</p></div>
-      <div class="tiers">
-        <div class="tier"><span class="pill y" style="justify-self:start">Implementar</span><h3>Prefeituras</h3><ul><li>Grupos nos CRAS do município</li><li>Formação de facilitadores locais</li><li>Acompanhamento da equipe da UFC</li></ul></div>
-        <div class="tier"><span class="pill y" style="justify-self:start">Receber</span><h3>Creches e organizações</h3><ul><li>Grupos com as famílias atendidas</li><li>Formação de educadoras</li><li>Materiais do programa</li></ul></div>
-        <div class="tier"><span class="pill y" style="justify-self:start">Financiar</span><h3>Fundações e empresas</h3><ul><li>Bolsas para facilitadores</li><li>Impressão de materiais</li><li>Avaliação de impacto</li></ul></div>
-        <div class="tier"><span class="pill y" style="justify-self:start">Pesquisar</span><h3>Universidades</h3><ul><li>Estudos conjuntos</li><li>Orientação de alunos</li><li>Publicações</li></ul></div>
+  </section>
+
+  <section class="secao" aria-labelledby="h-historia">
+    <div class="wrap">
+      <div class="cabeca"><span class="t-sobretitulo">História</span><h2 class="t-h1" id="h-historia">Como chegamos até aqui</h2></div>
+      <ol class="tempo">
+        <li><time>2020</time><p class="t-corpo-m">No I Desafio Universitário pela Primeira Infância, a equipe recebe o currículo de Meredith Rowe, de Harvard.</p></li>
+        <li><time>2021</time><p class="t-corpo-m">Formação da equipe com as autoras do currículo e primeiros grupos de prática.</p></li>
+        <li><time>2022</time><p class="t-corpo-m">Grupo piloto aos sábados no CAEN/UFC e aprovação do apoio do CNPq (Pró-Humanidades).</p></li>
+        <li><time>2023</time><p class="t-corpo-m">Grupos no PROSSICA, em Fortaleza, e no CEI Olga &amp; Parsifal Barroso, em Caucaia. Chegada à zona rural de Missão Velha.</p></li>
+        <li><time>2025</time><p class="t-corpo-m">Tese de doutorado avalia a implementação do programa.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="secao branca" aria-labelledby="h-equipe">
+    <div class="wrap">
+      <div class="cabeca"><span class="t-sobretitulo">Equipe</span><h2 class="t-h1" id="h-equipe">Quem faz</h2></div>
+      <div class="grade-3">
+        <div class="card pessoa"><span class="ini">GI</span><div><h3 class="t-h4">Guilherme Irffi</h3><p class="t-corpo-p">Professor do CAEN/UFC. Coordena o programa no Brasil.</p></div></div>
+        <div class="card pessoa"><span class="ini">MR</span><div><h3 class="t-h4">Meredith Rowe e Lizzie Baird</h3><p class="t-corpo-p">Universidade Harvard. Autoras do currículo.</p></div></div>
+        <div class="card pessoa"><span class="ini">FC</span><div><h3 class="t-h4">Flávio Cunha</h3><p class="t-corpo-p">Rice University. Coordena o projeto de pesquisa.</p></div></div>
       </div>
-      <div class="btn-row" style="margin-top:12px"><a class="btn btn-primary" href="#contato">Quero ser parceiro</a></div>
-      <p class="source">Lista montada a partir do Glossário e dos Relatos do projeto. Os logotipos oficiais entram no lugar das siglas quando os parceiros enviarem as marcas.</p>
+      <p class="equipe-nomes t-corpo-p"><strong>Equipe de pesquisa e intervenção:</strong> Ana Rayssa Lopes, Brysa Fernandes, Camila de Freitas, Camila Guedes Corrêa, Gabriella Nogueira, Isabel Fontgalland, Isabela Braga Sales, José Carlos, Juliana Cavalcanti, Kelly Samá, Laila Monteiro, Letícia Lima, Maria Cecília Bonfim, Maria Helena Campelo, Maria Fiebig, Samira Melo e Walacy Maciel.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ============ PARA FAMÍLIAS ============ -->
+<div class="view" data-view="familias" hidden>
+  <header class="cab-pagina"><div class="wrap">
+    <span class="t-sobretitulo">Para famílias</span>
+    <h1 class="t-display">Dicas para o dia a dia</h1>
+    <p class="t-corpo-g sec">Ideias que cabem na rotina, sem brinquedo caro nem tempo extra. Escolha a fase da sua criança.</p>
+  </div></header>
+  <section class="secao branca" style="padding-top:var(--espaco-7)" aria-label="Dicas por fase">
+    <div class="wrap">
+      <div class="abas" role="group" aria-label="Fase da criança">
+        <button class="aba" type="button" data-fase="todas" aria-pressed="true">Todas</button>
+        <button class="aba" type="button" data-fase="gestacao" aria-pressed="false">Gestação</button>
+        <button class="aba" type="button" data-fase="bebes" aria-pressed="false">Bebês</button>
+        <button class="aba" type="button" data-fase="pequenas" aria-pressed="false">Crianças pequenas</button>
+        <button class="aba" type="button" data-fase="maiores" aria-pressed="false">Crianças maiores</button>
+      </div>
+      <div class="grade-3" id="dicas-todas" aria-live="polite"></div>
+    </div>
+  </section>
+  <section class="secao" aria-labelledby="h-glossario">
+    <div class="wrap glossario">
+      <div class="lado">
+        <span class="t-sobretitulo">Glossário</span>
+        <h2 class="t-h1" id="h-glossario">As palavras dos encontros</h2>
+        <div class="campo"><label for="busca">Buscar uma palavra</label><input class="caixa" id="busca" type="search" placeholder="Ex.: leitura, rotina" autocomplete="off"><span class="ajuda" id="busca-ajuda">19 palavras</span></div>
+      </div>
+      <dl class="termos" id="termos"></dl>
+    </div>
+  </section>
+  <section class="secao branca" aria-labelledby="h-whats">
+    <div class="wrap" style="max-width:760px">
+      <div class="cabeca"><h2 class="t-h2" id="h-whats">Receba uma dica por semana no WhatsApp</h2><p class="t-corpo-m sec">Uma ideia curta, toda segunda-feira, para a fase da sua criança.</p></div>
+      <form id="form-whats" class="form" novalidate>
+        <div class="campo" id="campo-whats"><label for="whats">WhatsApp com DDD</label><input class="caixa" id="whats" type="tel" inputmode="tel" placeholder="(85) 9 0000-0000" autocomplete="tel"><span class="ajuda" id="whats-ajuda">Só usamos o número para enviar as dicas.</span></div>
+        <div style="align-self:start;padding-top:26px"><button class="botao botao--secundario" type="submit">Quero receber</button></div>
+      </form>
+      <div class="aviso aviso--sucesso status" id="whats-ok" hidden><svg class="ico"><use href="#i-check"/></svg><div><p class="t-rotulo-g titulo">Cadastro de exemplo feito</p><p class="t-corpo-p">No site real, a primeira dica chega na próxima segunda-feira.</p></div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ PESQUISA ============ -->
+<div class="view" data-view="pesquisa" hidden>
+  <header class="cab-pagina"><div class="wrap">
+    <span class="t-sobretitulo">Pesquisa</span>
+    <h1 class="t-display">O que a pesquisa mostra</h1>
+    <p class="t-corpo-g sec">O programa nasceu dentro da universidade e é acompanhado por estudos desde o primeiro grupo.</p>
+  </div></header>
+  <section class="secao branca" style="padding-top:var(--espaco-7)" aria-label="Estudos">
+    <div class="wrap">
+      <div class="estudos">
+        <article class="card estudo">
+          <div class="meta-estudo"><span class="tag tag--ouro">Dissertação de mestrado</span><span class="tag tag--areia">2023</span></div>
+          <h2 class="t-h3">Ensaios sobre o programa de parentalidade “Pais e Cuidadores são Construtores de Cérebros”</h2>
+          <p class="t-corpo-p quem">Camila Guedes Corrêa · orientação de Guilherme Irffi · CAEN/UFC</p>
+          <div class="aviso aviso--sucesso"><svg class="ico"><use href="#i-check"/></svg><div><p class="t-rotulo-g titulo">Principal achado</p><p class="t-corpo-p">Depois dos 11 encontros, os cuidadores passaram a falar de forma mais específica sobre como apoiar o desenvolvimento da criança em casa, usando os conceitos dos encontros.</p></div></div>
+        </article>
+        <article class="card estudo">
+          <div class="meta-estudo"><span class="tag tag--ouro">Tese de doutorado</span><span class="tag tag--areia">2025</span></div>
+          <h2 class="t-h3">Um passo de cada vez: a implementação de um projeto de parentalidade positiva com foco no desenvolvimento de linguagem de crianças entre 0 e 5 anos</h2>
+          <p class="t-corpo-p quem">Isabela Braga Sales · orientação de Guilherme Irffi · CAEN/UFC</p>
+          <p class="t-corpo-p sec">Resumo dos achados <span class="pendente">a incluir</span></p>
+        </article>
+        <article class="card estudo">
+          <div class="meta-estudo"><span class="tag tag--ouro">Trabalho de conclusão de curso</span><span class="tag tag--areia">2025</span></div>
+          <h2 class="t-h3">A relação entre ambiente familiar e desenvolvimento infantil: evidências do projeto</h2>
+          <p class="t-corpo-p quem">Samira Melo Nogueira · orientação de Guilherme Irffi · Economia/UFC</p>
+          <p class="t-corpo-p sec">Resumo dos achados <span class="pendente">a incluir</span></p>
+        </article>
+        <article class="card estudo">
+          <div class="meta-estudo"><span class="tag tag--ouro">Trabalho de conclusão de curso</span><span class="tag tag--areia">2023</span></div>
+          <h2 class="t-h3">Nudge e suas abordagens: quando a manipulação é uma escolha</h2>
+          <p class="t-corpo-p quem">Ana Rayssa Lopes Lyra · Economia/UFC</p>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="secao" aria-labelledby="h-materiais">
+    <div class="wrap">
+      <h2 class="t-h2" id="h-materiais" style="margin-bottom:var(--espaco-5)">Materiais do projeto</h2>
+      <div class="grade-3">
+        <div class="card"><svg class="ico" style="color:var(--cor-icon-brand)"><use href="#i-livro"/></svg><h3 class="t-h4">Parentalidade Positiva Importa</h3><p class="t-corpo-p sec">Livro do projeto.</p></div>
+        <div class="card"><svg class="ico" style="color:var(--cor-icon-brand)"><use href="#i-livro"/></svg><h3 class="t-h4">Glossário</h3><p class="t-corpo-p sec">Os termos usados nos encontros, de A a Z.</p></div>
+        <div class="card"><svg class="ico" style="color:var(--cor-icon-brand)"><use href="#i-livro"/></svg><h3 class="t-h4">Relatos</h3><p class="t-corpo-p sec">As experiências de aprender o tempo todo, contadas pela equipe.</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ PARCEIROS ============ -->
+<div class="view" data-view="parceiros" hidden>
+  <header class="cab-pagina"><div class="wrap">
+    <span class="t-sobretitulo">Parceiros</span>
+    <h1 class="t-display">Quem constrói com a gente</h1>
+    <p class="t-corpo-g sec">Universidades, institutos, fundações e o poder público tornam possível levar o programa às famílias.</p>
+  </div></header>
+  <section class="secao branca" style="padding-top:0" aria-label="Lista de parceiros">
+    <div class="wrap" id="grupos"></div>
+  </section>
+  <section class="secao" aria-label="Ser parceiro">
+    <div class="wrap">
+      <div class="chamada">
+        <div><h2 class="t-h1">Quer ser parceiro?</h2><p class="t-corpo-g">Prefeituras, creches, fundações e universidades podem apoiar de formas diferentes.</p></div>
+        <a class="botao botao--grande botao--claro" href="#apoie">Ver formas de apoio<svg><use href="#i-seta"/></svg></a>
+      </div>
+      <p class="t-legenda sec" style="margin-top:var(--espaco-4)">Lista montada a partir do Glossário e dos Relatos do projeto. Os logotipos oficiais entram no lugar dos nomes quando os parceiros enviarem as marcas.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ============ LEVE AO SEU MUNICÍPIO ============ -->
+<div class="view" data-view="apoie" hidden>
+  <header class="cab-pagina"><div class="wrap">
+    <span class="t-sobretitulo">Para gestores e parceiros</span>
+    <h1 class="t-display">Leve o programa ao seu município</h1>
+    <p class="t-corpo-g sec">O currículo já está adaptado ao Brasil. A equipe da UFC forma as pessoas do seu município e acompanha os resultados.</p>
+  </div></header>
+  <section class="secao branca" aria-labelledby="h-etapas">
+    <div class="wrap">
+      <h2 class="t-h2" id="h-etapas" style="margin-bottom:var(--espaco-6)">Como funciona a implantação</h2>
+      <ol class="etapas">
+        <li><span class="passo passo--concluido">1</span><h3 class="t-h4">Sensibilização</h3><p class="t-corpo-m">Apresentação do programa para gestores e equipes dos CRAS.</p></li>
+        <li><span class="passo passo--concluido">2</span><h3 class="t-h4">Formação</h3><p class="t-corpo-m">Facilitadores e auxiliares do município aprendem a conduzir os 11 encontros.</p></li>
+        <li><span class="passo passo--atual">3</span><h3 class="t-h4">Grupos com as famílias</h3><p class="t-corpo-m">Os encontros começam, com acompanhamento e avaliação da UFC.</p></li>
+      </ol>
+    </div>
+  </section>
+  <section class="secao" aria-labelledby="h-contato">
+    <div class="wrap contato">
+      <div class="cabeca" style="margin:0">
+        <span class="t-sobretitulo">Contato</span>
+        <h2 class="t-h1" id="h-contato">Vamos conversar</h2>
+        <p class="t-corpo-g sec">Conte quem você é e o que gostaria de fazer. A equipe responde por e-mail.</p>
+        <p class="t-corpo-m sec">CAEN/UFC, Fortaleza (CE)<br>E-mail <span class="pendente">a confirmar</span></p>
+      </div>
+      <form class="card" id="form-contato" novalidate style="padding:var(--espaco-6)">
+        <div class="form">
+          <div class="campo" id="campo-nome"><label for="nome">Seu nome</label><input class="caixa" id="nome" autocomplete="name"><span class="ajuda" id="nome-ajuda" hidden></span></div>
+          <div class="campo" id="campo-email"><label for="email">E-mail</label><input class="caixa" id="email" type="email" autocomplete="email"><span class="ajuda" id="email-ajuda" hidden></span></div>
+          <div class="campo"><label for="inst">Instituição</label><input class="caixa" id="inst" placeholder="Ex.: Secretaria de Assistência Social"></div>
+          <div class="campo"><label for="mun">Município</label><input class="caixa" id="mun" placeholder="Ex.: Sobral (CE)"></div>
+          <div class="campo cheio"><label for="tipo">Você quer</label><select class="caixa" id="tipo"><option>Levar o programa ao meu município</option><option>Receber um grupo na minha organização</option><option>Apoiar ou financiar</option><option>Parceria de pesquisa</option></select></div>
+          <div class="campo cheio"><label for="msg">Mensagem</label><textarea class="caixa" id="msg"></textarea></div>
+          <div class="cheio"><button class="botao botao--primario" type="submit">Enviar mensagem</button></div>
+        </div>
+        <div class="aviso aviso--sucesso status" id="contato-ok" hidden><svg class="ico"><use href="#i-check"/></svg><div><p class="t-rotulo-g titulo">Mensagem pronta</p><p class="t-corpo-p">Este é um site de exemplo, então a mensagem ainda não foi enviada.</p></div></div>
+      </form>
     </div>
   </section>
 </div>
 </main>
 
-<footer class="site-foot">
+<footer class="rodape-site">
   <div class="wrap">
-    <div class="foot-grid">
-      <div style="display:grid;gap:14px;align-content:start">
-        <img class="foot-logo" src="assets/logo.png" width="720" height="604" alt="Logo Pais e Cuidadores são Construtores de Cérebros">
-        <p style="font-size:.93rem;color:var(--fg-2)">Programa de parentalidade positiva do CAEN, Universidade Federal do Ceará.</p>
+    <div class="colunas">
+      <div style="display:grid;gap:var(--espaco-3);align-content:start">
+        <img src="assets/logo.png" width="720" height="604" alt="Logo Pais e Cuidadores são Construtores de Cérebros">
+        <p class="t-corpo-p sec">Programa de parentalidade positiva do CAEN, Universidade Federal do Ceará.</p>
       </div>
-      <div><h4>Programa</h4><ul><li><a href="#programa">O programa</a></li><li><a href="#como-funciona">Como funciona</a></li><li><a href="#pesquisa">Pesquisa</a></li><li><a href="#quem-faz">Quem faz</a></li></ul></div>
-      <div><h4>Participe</h4><ul><li><a href="#familias">Dicas para famílias</a></li><li><a href="#apoiar">Leve ao seu município</a></li><li><a href="#parceiros">Parceiros</a></li><li><a href="#contato">Contato</a></li></ul></div>
-      <div><h4>Transparência</h4><ul><li><a href="#duvidas">Perguntas frequentes</a></li><li>Política de privacidade (LGPD) <span class="todo">a criar</span></li><li>Encarregado de dados <span class="todo">a definir</span></li><li>Instagram · YouTube <span class="todo">links</span></li></ul></div>
+      <div><p class="t-rotulo-m" style="margin-bottom:var(--espaco-3)">Navegue</p><ul class="t-corpo-p"><li><a href="#sobre">Sobre o programa</a></li><li><a href="#familias">Para famílias</a></li><li><a href="#pesquisa">Pesquisa</a></li><li><a href="#parceiros">Parceiros</a></li><li><a href="#apoie">Leve ao seu município</a></li></ul></div>
+      <div><p class="t-rotulo-m" style="margin-bottom:var(--espaco-3)">Transparência</p><ul class="t-corpo-p sec"><li>Política de privacidade <span class="pendente">a criar</span></li><li>Instagram e YouTube <span class="pendente">links</span></li><li>Apoio: CNPq, processo 421445/2022-0</li></ul></div>
     </div>
-    <div class="foot-note"><span>Apoio: CNPq, processo 421445/2022-0, Chamada Pró-Humanidades 2022.</span><span>Site de exemplo. Os formulários ainda não enviam mensagens.</span></div>
+    <div class="nota t-legenda"><span>© Pais e Cuidadores são Construtores de Cérebros · CAEN/UFC</span><span>Site de exemplo. Os formulários ainda não enviam mensagens.</span></div>
   </div>
 </footer>
 
 <script>
 (function(){
-  var TIPS=[
-    {f:'gestacao',fase:'Gestação',t:'Converse e cante para a barriga',p:'Nos últimos meses da gestação, o bebê já escuta os sons de fora. Sua voz vai ser uma das primeiras que ele reconhece.',k:'Janela de oportunidades'},
-    {f:'gestacao',fase:'Gestação',t:'Monte sua rede de apoio',p:'Combine com quem pode ajudar nas primeiras semanas: quem cuida da casa, quem vai às consultas, com quem conversar quando bater o cansaço.',k:'Rede de apoio'},
-    {f:'gestacao',fase:'Gestação',t:'Conheça a Caderneta da Criança',p:'Ela traz os marcos do desenvolvimento e os registros de saúde. Leia antes do bebê nascer e leve em todas as consultas.',k:'Marcos do desenvolvimento'},
-    {f:'bebes',fase:'Bebês · 0 a 18 meses',t:'Conte o que você está fazendo',p:'Na troca de fralda, no banho e na comida, fale em voz alta. Dar nome às coisas ajuda o bebê a aprender palavras antes mesmo de falar.',k:'Conversa aqui e agora'},
-    {f:'bebes',fase:'Bebês · 0 a 18 meses',t:'Responda ao balbucio',p:'Quando o bebê fizer um som, responda e espere. Ele vai tentar de novo. Essa troca de vez é a base de toda conversa.',k:'Interação responsiva'},
-    {f:'bebes',fase:'Bebês · 0 a 18 meses',t:'Siga o dedinho',p:'Quando o bebê apontar ou olhar fixo para algo, diga o nome e converse sobre aquilo.',k:'Atenção compartilhada'},
-    {f:'pequenas',fase:'Crianças pequenas · 1,5 a 3 anos',t:'Pergunte “o que você acha?”',p:'Perguntas com mais de uma resposta fazem a criança pensar e usar mais palavras do que um simples sim ou não.',k:'Perguntas abertas'},
-    {f:'pequenas',fase:'Crianças pequenas · 1,5 a 3 anos',t:'Pare a história e pergunte',p:'Aponte as figuras, pergunte o que vai acontecer e deixe a criança contar do jeito dela. Não precisa ler todas as palavras.',k:'Leitura dialogada'},
-    {f:'pequenas',fase:'Crianças pequenas · 1,5 a 3 anos',t:'Avise o que vem depois',p:'“Depois do almoço, a gente escova os dentes e vai dormir.” Saber o que vem ajuda a criança a lidar com as emoções.',k:'Visualização'},
-    {f:'maiores',fase:'Crianças maiores · 3 a 5 anos',t:'Conversem sobre ontem e amanhã',p:'Pergunte como foi o dia na creche ou planejem juntos a visita à avó. Falar do que não está na frente dos olhos desenvolve a linguagem.',k:'Conversa à distância'},
-    {f:'maiores',fase:'Crianças maiores · 3 a 5 anos',t:'Matemática na cozinha',p:'Contar colheres de feijão, comparar o pão grande e o pequeno, separar por cores. Tudo isso é matemática.',k:'Conversa matemática'},
-    {f:'maiores',fase:'Crianças maiores · 3 a 5 anos',t:'Dê nome aos grandes sentimentos',p:'“Você ficou com raiva porque o brinquedo quebrou.” Nomear a emoção ajuda a criança a entender o que sente e a se acalmar.',k:'Desenvolvimento socioemocional'}
+  var FASES={gestacao:['Gestação','tag--terracota','gravidez'],bebes:['Bebês','tag--ouro','0 a 18 meses'],pequenas:['Crianças pequenas','tag--ceu','1,5 a 3 anos'],maiores:['Crianças maiores','tag--salvia','3 a 5 anos']};
+  var DICAS=[
+    ['gestacao','Converse e cante para a barriga','Nos últimos meses da gestação, o bebê já escuta os sons de fora. Sua voz vai ser uma das primeiras que ele reconhece.','Janela de oportunidades'],
+    ['gestacao','Monte sua rede de apoio','Combine com quem pode ajudar nas primeiras semanas: quem cuida da casa, quem vai às consultas, com quem conversar.','Rede de apoio'],
+    ['gestacao','Conheça a Caderneta da Criança','Ela traz os marcos do desenvolvimento e os registros de saúde. Leia antes do bebê nascer e leve às consultas.','Marcos do desenvolvimento'],
+    ['bebes','Conte o que você está fazendo','No banho, na troca de fralda e na comida, fale em voz alta. Dar nome às coisas ajuda o bebê a aprender palavras.','Conversa aqui e agora'],
+    ['bebes','Responda ao balbucio','Quando o bebê fizer um som, responda e espere. Essa troca de vez é a base de toda conversa.','Interação responsiva'],
+    ['bebes','Siga o dedinho','Quando o bebê apontar ou olhar fixo para algo, diga o nome e converse sobre aquilo.','Atenção compartilhada'],
+    ['pequenas','Pergunte “o que você acha?”','Perguntas com mais de uma resposta fazem a criança pensar e usar mais palavras.','Perguntas abertas'],
+    ['pequenas','Pare a história e pergunte','Aponte as figuras e pergunte o que vai acontecer. Não precisa ler todas as palavras.','Leitura dialogada'],
+    ['pequenas','Avise o que vem depois','“Depois do almoço, a gente escova os dentes e vai dormir.” Saber o que vem acalma.','Visualização'],
+    ['maiores','Conversem sobre ontem e amanhã','Pergunte como foi o dia na creche ou planejem juntos a visita à avó.','Conversa à distância'],
+    ['maiores','Matemática na cozinha','Contar colheres de feijão, comparar o pão grande e o pequeno, separar por cores.','Conversa matemática'],
+    ['maiores','Dê nome aos grandes sentimentos','“Você ficou com raiva porque o brinquedo quebrou.” Nomear a emoção ajuda a criança a se acalmar.','Desenvolvimento socioemocional']
   ];
-  var GLOSS=[
+  var TERMOS=[
     ['Atenção compartilhada','Quando o adulto percebe o que chamou a atenção da criança e conversa com ela sobre aquilo.'],
     ['Balbucio','Sons de vogais e consoantes que o bebê começa a fazer por volta dos 6 meses. É um treino para a fala.'],
-    ['Conversa à distância','Conversar sobre o que já passou ou sobre o que vai acontecer. Desenvolve habilidades de linguagem mais complexas.'],
+    ['Conversa à distância','Conversar sobre o que já passou ou sobre o que vai acontecer. Desenvolve uma linguagem mais rica.'],
     ['Conversa aqui e agora','Conversar sobre o que está acontecendo no momento ou sobre algo que vocês estão vendo.'],
-    ['Conversa matemática','Qualquer conversa com números, tamanhos e formas, como contar grãos de arroz ou comparar o grandão e o pequenininho.'],
-    ['Desenvolvimento socioemocional','A capacidade de perceber e controlar as emoções, conviver com outras pessoas e resolver problemas.'],
-    ['Estresse tóxico','Estresse muito forte ou repetido, maior do que a criança consegue enfrentar. A violência e a falta de carinho estão entre as causas.'],
+    ['Conversa matemática','Qualquer conversa com números, tamanhos e formas, como contar grãos de arroz.'],
+    ['Desenvolvimento socioemocional','Perceber e controlar as emoções, conviver com outras pessoas e resolver problemas.'],
+    ['Estresse tóxico','Estresse muito forte ou repetido, maior do que a criança consegue enfrentar, como a violência e a falta de carinho.'],
     ['Interação responsiva','Responder aos sinais da criança e esperar a vez dela, como numa conversa de vai e vem.'],
     ['Janela de oportunidades','Os primeiros anos de vida, quando o cérebro está mais aberto a aprender.'],
     ['Leitura compartilhada','Adulto e criança olham ou leem uma história juntos.'],
@@ -799,84 +766,70 @@ textarea.input{min-height:110px;resize:vertical}
     ['Rotina','Uma sequência de acontecimentos que se repete a cada dia. Até os bebês se beneficiam dela.'],
     ['Superpoder das crianças','A capacidade de aprender o tempo todo, em cada momento do dia.'],
     ['Visualização','Contar para a criança o que vai acontecer em seguida, para que ela se sinta segura.'],
-    ['Zona de desenvolvimento proximal','A distância entre o que a criança já faz sozinha e o que ela consegue fazer com ajuda.']
+    ['Zona de desenvolvimento proximal','A distância entre o que a criança já faz sozinha e o que consegue fazer com ajuda.']
   ];
-  var ORGS={
-    'pg-pesquisa':[['UFC','Universidade Federal do Ceará','Sede do programa'],['CAEN','CAEN/UFC','Pós-Graduação em Economia'],['CGPR','Centro de Gestão para Resultados','UFC'],['CEnPE','Centro de Excelência em Políticas Educacionais','UFC'],['LEPES','Laboratório de Estudos e Pesquisas em Economia Social','USP Ribeirão Preto'],['H','Universidade Harvard','Autoria do currículo'],['RICE','Rice University','Projeto de pesquisa']],
-    'pg-fomento':[['CNPq','Conselho Nacional de Desenvolvimento Científico e Tecnológico','Pró-Humanidades 2022'],['FL','Fundação Lemann','Apoio']],
-    'pg-territorio':[['IPREDE','Instituto da Primeira Infância','Fortaleza'],['IME','Instituto Myra Eliane','Apoio'],['CEI','CEI Olga & Parsifal Barroso','Caucaia'],['PRO','PROSSICA','Fortaleza'],['MH','Creche Maria Hilda','Sítio Barreiras, Missão Velha']]
-  };
+  var GRUPOS=[
+    ['Pesquisa e universidades','Desenvolvem o currículo, formam as equipes e avaliam os resultados.',[['UFC','Universidade Federal do Ceará'],['CAEN','Pós-Graduação em Economia, UFC'],['CGPR','Centro de Gestão para Resultados, UFC'],['CEnPE','Centro de Excelência em Políticas Educacionais, UFC'],['LEPES','USP Ribeirão Preto'],['Harvard','Autoria do currículo'],['Rice University','Projeto de pesquisa']]],
+    ['Fomento','Financiam a pesquisa, a formação e os materiais.',[['CNPq','Pró-Humanidades 2022'],['Fundação Lemann','Apoio']]],
+    ['Primeira infância e territórios','Recebem os grupos e aproximam o programa das famílias.',[['IPREDE','Instituto da Primeira Infância'],['Instituto Myra Eliane','Apoio'],['CEI Olga & Parsifal Barroso','Caucaia'],['PROSSICA','Fortaleza'],['Creche Maria Hilda','Missão Velha']]],
+    ['Administração pública','Secretarias que levam os encontros aos CRAS.',[]]
+  ];
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function dicaHTML(d){var f=FASES[d[0]];return '<article class="card dica"><div class="fase"><span class="tag '+f[1]+'">'+esc(f[0])+'</span><span class="t-legenda sec">'+esc(f[2])+'</span></div><h3>'+esc(d[1])+'</h3><p class="t-corpo-m">'+esc(d[2])+'</p><p class="rodape"><button type="button" class="tag tag--areia" data-termo="'+esc(d[3])+'">'+esc(d[3])+'</button></p></article>'}
+
+  // Trilha (componente Progresso)
+  var t='';for(var i=1;i<=11;i++){var st=i<5?'concluido':(i===5?'atual':'futuro');t+='<span class="passo passo--'+st+'" title="Encontro '+i+'">'+(i<5?'<svg><use href="#i-check"/></svg>':i)+'</span>';if(i<11)t+='<span class="linha'+(i<5?' feita':'')+'"></span>'}
+  document.getElementById('trilha').innerHTML=t;
 
   // Dicas
-  var tipsEl=document.getElementById('tips');
-  function renderTips(f){
-    tipsEl.innerHTML=TIPS.filter(function(x){return f==='todas'||x.f===f}).map(function(x){
-      return '<article class="tip"><span class="phase">'+esc(x.fase)+'</span><h3>'+esc(x.t)+'</h3><p>'+esc(x.p)+'</p><button type="button" class="term" data-term="'+esc(x.k)+'">'+esc(x.k)+'</button></article>';
-    }).join('');
-  }
-  document.querySelectorAll('.chip').forEach(function(b){
-    b.addEventListener('click',function(){
-      document.querySelectorAll('.chip').forEach(function(o){o.setAttribute('aria-pressed',String(o===b))});
-      renderTips(b.dataset.fase);
-      try{localStorage.setItem('ccc-fase',b.dataset.fase)}catch(e){}
-    });
-  });
-  var fase='todas'; try{fase=localStorage.getItem('ccc-fase')||'todas'}catch(e){}
-  var startChip=document.querySelector('.chip[data-fase="'+fase+'"]')||document.querySelector('.chip');
-  document.querySelectorAll('.chip').forEach(function(o){o.setAttribute('aria-pressed',String(o===startChip))});
-  renderTips(startChip.dataset.fase);
+  document.getElementById('dicas-destaque').innerHTML=[0,3,7,11].map(function(i){return dicaHTML(DICAS[i])}).join('');
+  var todas=document.getElementById('dicas-todas'), fase='todas';
+  function mostraDicas(f){fase=f;todas.innerHTML=DICAS.filter(function(d){return f==='todas'||d[0]===f}).map(dicaHTML).join('');document.querySelectorAll('.aba').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.fase===f))})}
+  document.querySelectorAll('.aba').forEach(function(b){b.addEventListener('click',function(){mostraDicas(b.dataset.fase)})});
+  mostraDicas('todas');
 
   // Glossário
-  var q=document.getElementById('gloss-q'), list=document.getElementById('gloss-list');
+  var busca=document.getElementById('busca'), termos=document.getElementById('termos'), ajuda=document.getElementById('busca-ajuda');
   function norm(s){return s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase()}
-  function renderGloss(){
-    var v=norm(q.value.trim());
-    var hits=GLOSS.filter(function(g){return !v||norm(g[0]+' '+g[1]).indexOf(v)>-1});
-    list.innerHTML=hits.length?hits.map(function(g){return '<div class="hit"><dt>'+esc(g[0])+'</dt><dd>'+esc(g[1])+'</dd></div>'}).join(''):'<p class="empty">Nenhuma palavra encontrada. Tente outra, como "leitura" ou "rotina".</p>';
-  }
-  q.addEventListener('input',renderGloss);
-  document.querySelectorAll('.popular button').forEach(function(b){b.addEventListener('click',function(){q.value=b.dataset.q;renderGloss();q.focus()})});
-  tipsEl.addEventListener('click',function(e){var t=e.target.closest('.term'); if(!t)return; q.value=t.dataset.term; renderGloss(); document.getElementById('gloss-titulo').scrollIntoView({block:'center'});});
-  renderGloss();
+  function mostraTermos(){var v=norm(busca.value.trim());var r=TERMOS.filter(function(x){return !v||norm(x[0]+' '+x[1]).indexOf(v)>-1});
+    termos.innerHTML=r.map(function(x){return '<div><dt class="t-h4">'+esc(x[0])+'</dt><dd class="t-corpo-m">'+esc(x[1])+'</dd></div>'}).join('');
+    ajuda.textContent=r.length?(r.length===1?'1 palavra':r.length+' palavras'):'Nenhuma palavra encontrada. Tente “leitura” ou “rotina”.'}
+  busca.addEventListener('input',mostraTermos); mostraTermos();
+  function buscarTermo(q){busca.value=q;mostraTermos();setTimeout(function(){document.getElementById('h-glossario').scrollIntoView({block:'start'})},60)}
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-termo]'); if(b){e.preventDefault(); if(location.hash!=='#familias'){location.hash='familias'} setTimeout(function(){buscarTermo(b.dataset.termo)},30); return}
+    var a=e.target.closest('[data-busca]'); if(a){e.preventDefault(); location.hash='familias'; setTimeout(function(){buscarTermo(a.dataset.busca)},30)}
+  });
 
   // Parceiros
-  Object.keys(ORGS).forEach(function(id){
-    document.getElementById(id).innerHTML=ORGS[id].map(function(o){return '<div class="org"><div class="mono">'+esc(o[0])+'</div><div><b>'+esc(o[1])+'</b><span>'+esc(o[2])+'</span></div></div>'}).join('');
-  });
+  document.getElementById('grupos').innerHTML=GRUPOS.map(function(g){
+    var tiles=g[2].length?g[2].map(function(o){return '<div class="logo-tile"><div><b>'+esc(o[0])+'</b><br><span>'+esc(o[1])+'</span></div></div>'}).join(''):'<div class="logo-tile vazio"><div><b>Secretarias municipais</b><br><span class="pendente">a confirmar</span></div></div>';
+    return '<div class="grupo"><div class="sobre"><h2 class="t-h3">'+esc(g[0])+'</h2><p class="t-corpo-m">'+esc(g[1])+'</p></div><div class="logos">'+tiles+'</div></div>';
+  }).join('');
 
-  // Formulários (exemplo)
-  document.getElementById('form-contato').addEventListener('submit',function(e){
-    e.preventDefault();
-    var s=document.getElementById('contato-status'), n=document.getElementById('c-nome'), m=document.getElementById('c-email');
-    if(!n.value.trim()||!/\S+@\S+\.\S+/.test(m.value)){s.hidden=false;s.style.background='var(--ter-sub)';s.style.color='var(--ter-ink)';s.textContent='Preencha seu nome e um e-mail válido para a equipe conseguir responder.';return}
-    s.hidden=false;s.style.background='';s.style.color='';s.textContent='Obrigado, '+n.value.trim().split(' ')[0]+'! Este é um site de exemplo, então a mensagem ainda não foi enviada.';
-  });
-  document.getElementById('form-wa').addEventListener('submit',function(e){
-    e.preventDefault();
-    var s=document.getElementById('wa-status'), t=document.getElementById('wa-tel').value.replace(/\D/g,'');
-    s.hidden=false;
-    if(t.length<10){s.style.background='var(--ter-sub)';s.style.color='var(--ter-ink)';s.textContent='Digite o número com DDD, por exemplo (85) 9 0000-0000.';return}
-    s.style.background='';s.style.color='';s.textContent='Cadastro de exemplo feito. No site real, a primeira dica chega na próxima segunda-feira.';
-  });
+  // Formulários de exemplo
+  function erro(id,msg){var c=document.getElementById('campo-'+id),a=document.getElementById(id+'-ajuda');c.classList.toggle('erro',!!msg);if(a){a.hidden=!msg&&id!=='whats';a.textContent=msg||a.dataset.padrao||''}}
+  document.getElementById('whats-ajuda').dataset.padrao=document.getElementById('whats-ajuda').textContent;
+  document.getElementById('form-whats').addEventListener('submit',function(e){e.preventDefault();var n=document.getElementById('whats').value.replace(/\D/g,'');
+    if(n.length<10){erro('whats','Digite o número com DDD, por exemplo (85) 9 0000-0000.');document.getElementById('whats-ok').hidden=true;return}
+    erro('whats','');document.getElementById('whats-ok').hidden=false});
+  document.getElementById('form-contato').addEventListener('submit',function(e){e.preventDefault();var ok=true;
+    if(!document.getElementById('nome').value.trim()){erro('nome','Digite seu nome.');ok=false}else erro('nome','');
+    if(!/\S+@\S+\.\S+/.test(document.getElementById('email').value)){erro('email','Digite um e-mail válido, como nome@prefeitura.gov.br.');ok=false}else erro('email','');
+    document.getElementById('contato-ok').hidden=!ok});
 
   // Menu
-  var mb=document.getElementById('menu-btn'), nav=document.getElementById('nav');
-  mb.addEventListener('click',function(){var o=nav.classList.toggle('open');mb.setAttribute('aria-expanded',String(o))});
-  nav.addEventListener('click',function(e){if(e.target.closest('a')){nav.classList.remove('open');mb.setAttribute('aria-expanded','false')}});
+  var mb=document.getElementById('abre-menu'), menu=document.getElementById('menu');
+  mb.addEventListener('click',function(){var o=menu.classList.toggle('aberto');mb.setAttribute('aria-expanded',String(o))});
+  menu.addEventListener('click',function(e){if(e.target.closest('a')){menu.classList.remove('aberto');mb.setAttribute('aria-expanded','false')}});
 
-  // Rotas: #parceiros abre a página de parceiros; outras âncoras ficam na página inicial
-  var home=document.getElementById('view-home'), parc=document.getElementById('view-parceiros');
-  function route(){
-    var h=(location.hash||'').slice(1);
-    var isP=h==='parceiros';
-    home.hidden=isP; parc.hidden=!isP;
-    document.querySelectorAll('.nav a').forEach(function(a){a.removeAttribute('aria-current')});
-    if(isP){document.querySelector('.nav a[data-view-link="parceiros"]').setAttribute('aria-current','page');window.scrollTo(0,0);return}
-    if(h){var el=document.getElementById(h); if(el){requestAnimationFrame(function(){el.scrollIntoView()})}}
-  }
-  document.querySelectorAll('[data-scroll]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var el=document.getElementById(a.dataset.scroll); if(el)el.scrollIntoView()})});
-  window.addEventListener('hashchange',route);
-  route();
+  // Páginas (rota pelo #)
+  var views=[].slice.call(document.querySelectorAll('.view'));
+  var nomes=views.map(function(v){return v.dataset.view});
+  function rota(){var h=(location.hash||'').slice(1)||'inicio'; if(nomes.indexOf(h)<0)h='inicio';
+    views.forEach(function(v){v.hidden=v.dataset.view!==h});
+    document.querySelectorAll('.menu a[data-v]').forEach(function(a){if(a.dataset.v===h)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+    window.scrollTo(0,0)}
+  window.addEventListener('hashchange',rota); rota();
 })();
 </script>
