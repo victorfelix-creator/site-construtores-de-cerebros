@@ -216,12 +216,42 @@ a.tag:hover,button.tag:hover{filter:brightness(.96);text-decoration:underline}
 @media (max-width:820px){.modulos{grid-template-columns:1fr}}
 .modulo .conteudo{gap:var(--espaco-4)}
 .modulo .botao{justify-self:start}
-.tabela-grupos{width:100%;border-collapse:collapse;font:400 16px/24px var(--f-corpo)}
-.tabela-grupos th{font:700 14px/18px var(--f-titulo);text-align:left;color:var(--cor-text-secondary);padding:var(--espaco-3) var(--espaco-4);border-bottom:var(--borda-media) solid var(--cor-border-default)}
-.tabela-grupos td{padding:var(--espaco-3) var(--espaco-4);border-bottom:var(--borda-fina) solid var(--cor-border-default)}
-.tabela-grupos td.num,.tabela-grupos th.num{text-align:right;font-variant-numeric:tabular-nums}
-.tabela-grupos tfoot td{font-weight:700;border-bottom:0}
-.rolagem{overflow-x:auto;background:var(--cor-bg-surface);border:var(--borda-fina) solid var(--cor-border-default);border-radius:var(--raio-lg)}
+/* Linha do tempo curva (o traço contínuo da logo) */
+.legenda-linha{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--espaco-2) var(--espaco-5);margin-top:calc(-1 * var(--espaco-5))}
+.legenda-linha li{display:flex;align-items:center;gap:var(--espaco-2);color:var(--cor-text-secondary)}
+.legenda-linha i{width:16px;height:16px;border-radius:50%;background:var(--cor-bg-surface);border:4px solid}
+.lg-marco{border-color:var(--ouro-400)!important}.lg-piloto{border-color:var(--ceu-500)!important}.lg-avaliacao{border-color:var(--salvia-500)!important}.lg-futuro{border-color:var(--terracota-500)!important;border-style:dashed!important}
+.linha{position:relative;max-width:980px;margin:var(--espaco-7) auto 0}
+.linha-svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.linha-svg path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.linha-svg .sombra{stroke:var(--ouro-100);stroke-width:20}
+.linha-svg .traco{stroke:var(--ouro-400);stroke-width:5}
+.linha-svg .tracejado{stroke:var(--ouro-400);stroke-width:5;stroke-dasharray:1 14}
+.linha-itens{position:relative;display:grid;gap:var(--espaco-5)}
+.linha-itens > li{display:grid;grid-template-columns:minmax(0,1fr) 180px minmax(0,1fr);column-gap:var(--espaco-4);align-items:center}
+.linha-itens .no{grid-row:1;grid-column:2;position:relative;z-index:1}
+.ano-item .no{justify-self:center}
+.lado-esq .no{justify-self:start}.lado-dir .no{justify-self:end}
+.lado-esq .cartao{grid-row:1;grid-column:1;justify-items:end;text-align:right}
+.lado-dir .cartao{grid-row:1;grid-column:3;justify-items:start}
+.ponto{width:24px;height:24px;border-radius:50%;background:var(--cor-bg-surface);border:5px solid var(--ouro-400);box-shadow:0 0 0 6px var(--cor-bg-canvas)}
+.tipo-piloto .ponto{border-color:var(--ceu-500)}.tipo-avaliacao .ponto{border-color:var(--salvia-500)}.tipo-futuro .ponto{border-color:var(--terracota-500);border-style:dashed}
+.ano{display:inline-block;background:var(--cor-bg-brand);color:var(--cor-text-on-brand);font:800 22px/1 var(--f-titulo);padding:10px 20px;border-radius:var(--raio-full);box-shadow:0 0 0 6px var(--cor-bg-canvas);font-variant-numeric:tabular-nums}
+.ano.futuro{background:var(--cor-bg-surface);color:var(--cor-text-danger);border:2px dashed var(--cor-border-danger)}
+.cartao{padding:var(--espaco-4) var(--espaco-5);gap:var(--espaco-1);max-width:380px;width:100%}
+.lado-esq .cartao{justify-self:end}
+.cartao .t-h4{margin-top:var(--espaco-1)}
+.pessoas{display:flex;align-items:baseline;gap:6px;margin-top:var(--espaco-1);font:700 14px/18px var(--f-titulo);color:var(--cor-text-secondary)}
+.pessoas b{font:800 32px/36px var(--f-titulo);color:var(--cor-text-brand);font-variant-numeric:tabular-nums}
+.total-linha{text-align:center;margin-top:var(--espaco-7);font:700 18px/26px var(--f-titulo)}
+.total-linha b{display:block;font:800 48px/56px var(--f-titulo);color:var(--cor-text-brand)}
+@media (max-width:720px){
+  .linha-itens > li{grid-template-columns:56px minmax(0,1fr);column-gap:var(--espaco-3)}
+  .linha-itens .no{grid-column:1}
+  .ano-item .no{grid-column:1 / -1;justify-self:start}
+  .lado-esq .no{justify-self:start}.lado-dir .no{justify-self:end}
+  .lado-esq .cartao,.lado-dir .cartao{grid-column:2;justify-self:stretch;justify-items:start;text-align:left;max-width:none}
+}
 .membros{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--espaco-3) var(--espaco-5)}
 .membros li{display:grid;gap:2px;padding-block:var(--espaco-3);border-top:var(--borda-fina) solid var(--cor-border-default)}
 .membros li span{color:var(--cor-text-secondary)}
@@ -287,10 +317,6 @@ a.tag:hover,button.tag:hover{filter:brightness(.96);text-decoration:underline}
 .unidade ol li .passo{width:28px;height:28px;font-size:12px}
 .u1 .faixa,.u1 .passo{background:var(--cor-unidade-1)} .u2 .faixa,.u2 .passo{background:var(--cor-unidade-2)} .u3 .faixa,.u3 .passo{background:var(--cor-unidade-3)} .u4 .faixa,.u4 .passo{background:var(--cor-unidade-4)}
 .unidade .passo{color:var(--areia-900)}
-.tempo{display:grid;gap:0;max-width:760px}
-.tempo li{display:grid;grid-template-columns:96px 1fr;gap:var(--espaco-5);padding-block:var(--espaco-4);border-top:var(--borda-fina) solid var(--cor-border-default)}
-.tempo time{font:800 22px/30px var(--f-titulo);color:var(--cor-text-brand)}
-.tempo p{color:var(--cor-text-secondary);padding-top:3px}
 .pessoa{grid-template-columns:56px 1fr;align-items:center;gap:var(--espaco-4)}
 .pessoa .ini{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font:800 18px/1 var(--f-titulo);background:var(--cor-bg-brand-subtle);color:var(--cor-text-brand)}
 .pessoa p{color:var(--cor-text-secondary)}
@@ -591,46 +617,24 @@ a.tag:hover,button.tag:hover{filter:brightness(.96);text-decoration:underline}
     </div>
   </section>
 
-  <section class="secao" aria-labelledby="h-historia">
+  <section class="secao" aria-labelledby="h-trajetoria">
     <div class="wrap">
-      <div class="cabeca"><span class="t-sobretitulo">História</span><h2 class="t-h1" id="h-historia">Como chegamos até aqui</h2></div>
-      <ol class="tempo">
-        <li><time>2020</time><p class="t-corpo-m">No I Desafio Universitário pela Primeira Infância, a equipe recebe o currículo de Meredith Rowe, de Harvard.</p></li>
-        <li><time>2021</time><p class="t-corpo-m">Primeira formação da equipe, on-line, com Meredith Rowe e Lizzie Baird.</p></li>
-        <li><time>2022</time><p class="t-corpo-m">Primeiros grupos piloto, no Conjunto Ceará, em Fortaleza, e no CEI Olga &amp; Parsifal Barroso, em Caucaia. Apoio do CNPq (Pró-Humanidades).</p></li>
-        <li><time>2023</time><p class="t-corpo-m">Pilotos no PROSSICA, em Fortaleza, e na Creche do Sítio Barreiras, na zona rural de Missão Velha. Apoio da FUNCAP.</p></li>
-        <li><time>2024</time><p class="t-corpo-m">Grupos de avaliação no CEI Olga &amp; Parsifal Barroso, no IPREDE, na Creche do Sítio Barreiras e no grupo Raimunda.</p></li>
-        <li><time>2025</time><p class="t-corpo-m">Novo grupo no IPREDE, tese de doutorado sobre a implementação e desenho do módulo Gestação.</p></li>
-        <li><time>2026</time><p class="t-corpo-m">O programa passa a reunir gestantes, pais e cuidadores, com grupos no IPREDE, em Caucaia e em Missão Velha.</p></li>
-      </ol>
-    </div>
-  </section>
-
-  <section class="secao branca" aria-labelledby="h-grupos">
-    <div class="wrap">
-      <div class="cabeca"><span class="t-sobretitulo">Onde já estivemos</span><h2 class="t-h1" id="h-grupos">Grupos realizados</h2><p class="t-corpo-g sec">Grupos piloto testaram o currículo. Grupos de avaliação acompanharam as famílias antes e depois dos encontros.</p></div>
-      <div class="rolagem">
-        <table class="tabela-grupos">
-          <thead><tr><th>Local</th><th>Tipo</th><th class="num">Ano</th><th class="num">Participantes</th></tr></thead>
-          <tbody>
-            <tr><td>Conjunto Ceará, Fortaleza</td><td>Piloto</td><td class="num">2022</td><td class="num">31</td></tr>
-            <tr><td>CEI Olga &amp; Parsifal Barroso, Caucaia</td><td>Piloto</td><td class="num">2022</td><td class="num">11</td></tr>
-            <tr><td>PROSSICA, Fortaleza</td><td>Piloto</td><td class="num">2023</td><td class="num">24</td></tr>
-            <tr><td>Creche do Sítio Barreiras, Missão Velha</td><td>Piloto</td><td class="num">2023</td><td class="num">14</td></tr>
-            <tr><td>CEI Olga &amp; Parsifal Barroso, Caucaia</td><td>Avaliação</td><td class="num">2024</td><td class="num">16</td></tr>
-            <tr><td>Raimunda</td><td>Avaliação</td><td class="num">2024</td><td class="num">6</td></tr>
-            <tr><td>IPREDE, Fortaleza</td><td>Avaliação</td><td class="num">2024</td><td class="num">15</td></tr>
-            <tr><td>Creche do Sítio Barreiras, Missão Velha</td><td>Avaliação</td><td class="num">2024</td><td class="num">17</td></tr>
-            <tr><td>IPREDE, Fortaleza</td><td>Avaliação</td><td class="num">2025</td><td class="num">15</td></tr>
-          </tbody>
-          <tfoot><tr><td colspan="3">Total</td><td class="num">149</td></tr></tfoot>
-        </table>
+      <div class="cabeca centro"><span class="t-sobretitulo">Nossa trajetória</span><h2 class="t-h1" id="h-trajetoria">Um passo de cada vez</h2><p class="t-corpo-g sec">Do currículo de Harvard aos grupos no Ceará. Cada ponto da linha é um grupo de famílias.</p></div>
+      <ul class="legenda-linha t-rotulo-m" aria-label="Legenda">
+        <li><i class="lg-marco"></i>Marco</li>
+        <li><i class="lg-piloto"></i>Grupo piloto</li>
+        <li><i class="lg-avaliacao"></i>Grupo de avaliação</li>
+        <li><i class="lg-futuro"></i>Próximo passo</li>
+      </ul>
+      <div class="linha" id="linha-tempo">
+        <svg class="linha-svg" aria-hidden="true"><path class="sombra"/><path class="traco"/><path class="tracejado"/></svg>
+        <ol class="linha-itens" id="linha-itens"></ol>
       </div>
-      <p class="t-legenda sec" style="margin-top:var(--espaco-3)">Fonte: registro institucional do programa.</p>
+      <p class="total-linha"><b>149</b> mães e cuidadores em 9 grupos, de 2022 a 2025<br><span class="t-legenda sec">Fonte: registro institucional do programa</span></p>
     </div>
   </section>
 
-  <section class="secao" aria-labelledby="h-equipe">
+  <section class="secao branca" aria-labelledby="h-equipe">
     <div class="wrap">
       <div class="cabeca"><span class="t-sobretitulo">Equipe</span><h2 class="t-h1" id="h-equipe">Quem faz</h2><p class="t-corpo-g sec">Economistas, psicólogas, assistentes sociais e educadoras de várias instituições, unidos pela primeira infância.</p></div>
       <div class="grade-3">
@@ -906,6 +910,51 @@ a.tag:hover,button.tag:hover{filter:brightness(.96);text-decoration:underline}
     var b=e.target.closest('[data-termo]'); if(b){e.preventDefault(); if(location.hash!=='#familias'){location.hash='familias'} setTimeout(function(){buscarTermo(b.dataset.termo)},30); return}
     var a=e.target.closest('[data-busca]'); if(a){e.preventDefault(); location.hash='familias'; setTimeout(function(){buscarTermo(a.dataset.busca)},30)}
   });
+
+  // Linha do tempo curva: o traço contínuo da logo liga os anos e os grupos
+  var LINHA=[
+    {ano:'2020'},
+    {t:'marco',titulo:'O currículo chega à UFC',texto:'No I Desafio Universitário pela Primeira Infância, a equipe recebe o currículo de Meredith Rowe, de Harvard.'},
+    {ano:'2021'},
+    {t:'marco',titulo:'Primeira formação da equipe',texto:'On-line, com Meredith Rowe e Lizzie Baird.'},
+    {ano:'2022'},
+    {t:'piloto',titulo:'Conjunto Ceará',local:'Fortaleza',n:31},
+    {t:'piloto',titulo:'CEI Olga & Parsifal Barroso',local:'Caucaia',n:11},
+    {ano:'2023'},
+    {t:'piloto',titulo:'PROSSICA',local:'Fortaleza',n:24},
+    {t:'piloto',titulo:'Creche do Sítio Barreiras',local:'Missão Velha, zona rural',n:14},
+    {ano:'2024'},
+    {t:'avaliacao',titulo:'CEI Olga & Parsifal Barroso',local:'Caucaia',n:16},
+    {t:'avaliacao',titulo:'Grupo Raimunda',n:6},
+    {t:'avaliacao',titulo:'IPREDE',local:'Fortaleza',n:15},
+    {t:'avaliacao',titulo:'Creche do Sítio Barreiras',local:'Missão Velha',n:17},
+    {ano:'2025'},
+    {t:'avaliacao',titulo:'IPREDE',local:'Fortaleza',n:15},
+    {ano:'2026',futuro:true},
+    {t:'futuro',titulo:'Gestantes, pais e cuidadores',texto:'O programa reúne os módulos Gestação e Primeira infância, com grupos no IPREDE, em Caucaia e em Missão Velha.'}
+  ];
+  var TAGL={marco:['tag--ouro','Marco'],piloto:['tag--ceu','Grupo piloto'],avaliacao:['tag--salvia','Grupo de avaliação'],futuro:['tag--terracota','Próximo passo']};
+  var ladoN=0, emFuturo=false;
+  document.getElementById('linha-itens').innerHTML=LINHA.map(function(it){
+    if(it.ano){ if(it.futuro) emFuturo=true; return '<li class="ano-item'+(it.futuro?' seg-futuro':'')+'"><span class="no ano'+(it.futuro?' futuro':'')+'">'+it.ano+'</span></li>'; }
+    var l=(ladoN++%2===0)?'lado-esq':'lado-dir', tg=TAGL[it.t];
+    var corpo=it.n!=null?(it.local?'<p class="t-corpo-p sec">'+esc(it.local)+'</p>':'')+'<p class="pessoas"><b>'+it.n+'</b>participantes</p>':'<p class="t-corpo-p sec">'+esc(it.texto)+'</p>';
+    return '<li class="'+l+' tipo-'+it.t+(emFuturo?' seg-futuro':'')+'"><span class="no ponto"></span><div class="card cartao"><span class="tag '+tg[0]+'">'+tg[1]+'</span><h3 class="t-h4">'+esc(it.titulo)+'</h3>'+corpo+'</div></li>';
+  }).join('');
+  var linhaEl=document.getElementById('linha-tempo'), linhaSvg=linhaEl.querySelector('svg');
+  function curva(p){if(!p.length)return '';var d='M'+p[0].x+' '+p[0].y;for(var i=1;i<p.length;i++){var a=p[i-1],b=p[i],k=(b.y-a.y)*0.55;d+=' C'+a.x+' '+(a.y+k)+' '+b.x+' '+(b.y-k)+' '+b.x+' '+b.y;}return d;}
+  function desenharLinha(){var box=linhaEl.getBoundingClientRect();if(!box.width||!box.height)return;
+    linhaSvg.setAttribute('viewBox','0 0 '+box.width+' '+box.height);
+    var nos=[].slice.call(linhaEl.querySelectorAll('.no')).map(function(n){var r=n.getBoundingClientRect();return{x:Math.round(r.left+r.width/2-box.left),y:Math.round(r.top+r.height/2-box.top),f:!!n.closest('.seg-futuro')};});
+    var cheio=nos.filter(function(p){return !p.f}), fut=nos.filter(function(p){return p.f});
+    var trilha=[{x:cheio[0].x,y:cheio[0].y-48}].concat(cheio), d=curva(trilha);
+    linhaSvg.querySelector('.traco').setAttribute('d',d);
+    linhaSvg.querySelector('.sombra').setAttribute('d',d);
+    linhaSvg.querySelector('.tracejado').setAttribute('d',fut.length?curva([cheio[cheio.length-1]].concat(fut)):'');}
+  if(window.ResizeObserver){new ResizeObserver(desenharLinha).observe(linhaEl);}
+  window.addEventListener('resize',desenharLinha);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(desenharLinha);
+  desenharLinha();
 
   // Parceiros
   document.getElementById('grupos').innerHTML=GRUPOS.map(function(g){
