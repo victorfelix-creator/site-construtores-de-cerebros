@@ -212,6 +212,20 @@ a.tag:hover,button.tag:hover{filter:brightness(.96);text-decoration:underline}
 .fatos li{display:flex;gap:var(--espaco-3);align-items:center}
 .pilha{display:grid;gap:var(--espaco-5);min-width:0}
 
+.modulos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--espaco-5)}
+@media (max-width:820px){.modulos{grid-template-columns:1fr}}
+.modulo .conteudo{gap:var(--espaco-4)}
+.modulo .botao{justify-self:start}
+.tabela-grupos{width:100%;border-collapse:collapse;font:400 16px/24px var(--f-corpo)}
+.tabela-grupos th{font:700 14px/18px var(--f-titulo);text-align:left;color:var(--cor-text-secondary);padding:var(--espaco-3) var(--espaco-4);border-bottom:var(--borda-media) solid var(--cor-border-default)}
+.tabela-grupos td{padding:var(--espaco-3) var(--espaco-4);border-bottom:var(--borda-fina) solid var(--cor-border-default)}
+.tabela-grupos td.num,.tabela-grupos th.num{text-align:right;font-variant-numeric:tabular-nums}
+.tabela-grupos tfoot td{font-weight:700;border-bottom:0}
+.rolagem{overflow-x:auto;background:var(--cor-bg-surface);border:var(--borda-fina) solid var(--cor-border-default);border-radius:var(--raio-lg)}
+.membros{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--espaco-3) var(--espaco-5)}
+.membros li{display:grid;gap:2px;padding-block:var(--espaco-3);border-top:var(--borda-fina) solid var(--cor-border-default)}
+.membros li span{color:var(--cor-text-secondary)}
+.subtitulo-equipe{margin:var(--espaco-7) 0 var(--espaco-4)}
 .numeros{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--espaco-6);text-align:center}
 @media (max-width:720px){.numeros{grid-template-columns:1fr;gap:var(--espaco-6)}}
 .numero{display:grid;gap:var(--espaco-2);justify-items:center}
@@ -355,7 +369,7 @@ a.tag:hover,button.tag:hover{filter:brightness(.96);text-decoration:underline}
       <div class="texto">
         <span class="t-sobretitulo">Programa de parentalidade positiva da UFC</span>
         <h1 class="t-display">Pais e cuidadores são construtores de cérebros</h1>
-        <p class="t-corpo-g sec">Em 11 encontros no CRAS do bairro, famílias com crianças de 0 a 5 anos e gestantes descobrem como as conversas do dia a dia ajudam o cérebro a crescer.</p>
+        <p class="t-corpo-g sec">Grupos de conversa para gestantes, mães, pais e cuidadores de crianças de 0 a 5 anos. Juntos, descobrimos como as conversas do dia a dia ajudam o cérebro a crescer, da barriga até a pré-escola.</p>
         <p class="t-acento-g">um passo de cada vez</p>
         <div class="botoes">
           <a class="botao botao--grande botao--primario" href="#familias">Ver dicas para minha família<svg><use href="#i-seta"/></svg></a>
@@ -385,18 +399,51 @@ a.tag:hover,button.tag:hover{filter:brightness(.96);text-decoration:underline}
     </div>
   </section>
 
-  <section class="secao" aria-labelledby="h-como">
+  <section class="secao" aria-labelledby="h-modulos">
+    <div class="wrap">
+      <div class="cabeca"><span class="t-sobretitulo">Os projetos</span><h2 class="t-h1" id="h-modulos">Do pré-natal aos 5 anos</h2><p class="t-corpo-g sec">O programa tem dois módulos, com grupos semanais conduzidos por facilitadores formados pela UFC.</p></div>
+      <div class="modulos">
+        <article class="card encontro modulo">
+          <div class="faixa" style="background:var(--cor-unidade-4)"></div>
+          <div class="conteudo">
+            <span class="tag tag--terracota" style="justify-self:start">Gestação</span>
+            <h3 class="t-h3">Conversa boa começa na gestação</h3>
+            <p class="t-corpo-m sec">O bebê já aprende na barriga. As gestantes descobrem como a voz, o toque e o afeto fortalecem o vínculo e preparam a linguagem.</p>
+            <ul class="meta t-corpo-p">
+              <li><svg class="ico ico-18"><use href="#i-calendario"/></svg>5 encontros semanais de 90 minutos</li>
+              <li><svg class="ico ico-18"><use href="#i-coracao"/></svg>Grupos de até 10 gestantes</li>
+            </ul>
+            <a class="botao botao--contorno" href="#sobre">Conhecer o módulo</a>
+          </div>
+        </article>
+        <article class="card encontro modulo">
+          <div class="faixa" style="background:var(--cor-unidade-1)"></div>
+          <div class="conteudo">
+            <span class="tag tag--ouro" style="justify-self:start">Primeira infância</span>
+            <h3 class="t-h3">Pais e cuidadores de crianças de 0 a 5 anos</h3>
+            <p class="t-corpo-m sec">Uma trilha de conversas sobre desenvolvimento, linguagem, emoções, leitura e brincadeiras no dia a dia da família.</p>
+            <ul class="meta t-corpo-p">
+              <li><svg class="ico ico-18"><use href="#i-calendario"/></svg>11 encontros semanais de 90 minutos</li>
+              <li><svg class="ico ico-18"><use href="#i-coracao"/></svg>Grupos de até 15 cuidadores</li>
+            </ul>
+            <a class="botao botao--contorno" href="#sobre">Ver os 11 encontros</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao branca" aria-labelledby="h-como">
     <div class="wrap dois">
       <div class="texto">
         <span class="t-sobretitulo">Como funciona</span>
-        <h2 class="t-h1" id="h-como">Onze encontros, um passo de cada vez</h2>
-        <p class="t-corpo-g sec">Os grupos se reúnem uma vez por semana no CRAS. Um facilitador conduz conversas, vídeos curtos e brincadeiras. A cada encontro, a família leva uma ideia nova para casa.</p>
+        <h2 class="t-h1" id="h-como">Um passo de cada vez</h2>
+        <p class="t-corpo-g sec">Os grupos acontecem perto de casa, em CRAS, unidades de saúde, creches e organizações da comunidade. Um facilitador conduz conversas, vídeos curtos e dinâmicas. A cada encontro, a família leva uma ideia nova para casa.</p>
         <ul class="fatos">
-          <li><svg class="ico"><use href="#i-calendario"/></svg>1 encontro por semana, de até 1h30</li>
-          <li><svg class="ico"><use href="#i-local"/></svg>No CRAS do bairro, em grupo</li>
+          <li><svg class="ico"><use href="#i-local"/></svg>Perto de casa, em grupo</li>
+          <li><svg class="ico"><use href="#i-conversa"/></svg>Conversas, vídeos curtos e dinâmicas</li>
           <li><svg class="ico"><use href="#i-coracao"/></svg>As crianças brincam com a equipe durante o encontro</li>
         </ul>
-        <div><a class="botao botao--contorno" href="#sobre">Ver os 11 encontros</a></div>
       </div>
       <div class="pilha">
         <div class="card progresso" aria-label="Exemplo da trilha de encontros">
@@ -420,13 +467,13 @@ a.tag:hover,button.tag:hover{filter:brightness(.96);text-decoration:underline}
     </div>
   </section>
 
-  <section class="secao branca" aria-labelledby="h-numeros">
+  <section class="secao" aria-labelledby="h-numeros">
     <div class="wrap">
       <div class="cabeca centro"><span class="t-sobretitulo">Resultados</span><h2 class="t-h1" id="h-numeros">O programa em números</h2></div>
       <div class="numeros">
-        <div class="numero"><b>11</b><p class="t-corpo-m">encontros semanais com as famílias</p><span class="t-legenda">Currículo do programa</span></div>
-        <div class="numero"><b>0 a 5</b><p class="t-corpo-m">anos é a idade das crianças, fase em que o cérebro mais se transforma</p><span class="t-legenda">Currículo do programa</span></div>
-        <div class="numero"><b>3</b><p class="t-corpo-m">municípios do Ceará com ações até 2023</p><span class="t-legenda">Relatos da equipe, 2023</span></div>
+        <div class="numero"><b>149</b><p class="t-corpo-m">mães e cuidadores participaram dos grupos entre 2022 e 2025</p><span class="t-legenda">Registro institucional do programa</span></div>
+        <div class="numero"><b>9</b><p class="t-corpo-m">grupos realizados em Fortaleza, Caucaia e Missão Velha</p><span class="t-legenda">Registro institucional do programa</span></div>
+        <div class="numero"><b>7</b><p class="t-corpo-m">formações de facilitadores, auxiliares e observadores desde 2021</p><span class="t-legenda">Tabelas do grupo de parentalidade</span></div>
       </div>
       <div class="aviso aviso--sucesso destaque-pesquisa">
         <svg class="ico"><use href="#i-check"/></svg>
@@ -439,7 +486,7 @@ a.tag:hover,button.tag:hover{filter:brightness(.96);text-decoration:underline}
     </div>
   </section>
 
-  <section class="secao" aria-labelledby="h-quem">
+  <section class="secao branca" aria-labelledby="h-quem">
     <div class="wrap dois">
       <figure class="citacao">
         <blockquote>“O afeto é a fita isolante das ligações entre os neurônios.”</blockquote>
@@ -454,19 +501,19 @@ a.tag:hover,button.tag:hover{filter:brightness(.96);text-decoration:underline}
     </div>
   </section>
 
-  <section class="secao branca" aria-labelledby="h-apoio">
+  <section class="secao" aria-labelledby="h-apoio">
     <div class="wrap">
       <div class="linha-titulo">
         <div class="cabeca"><span class="t-sobretitulo">Parceiros</span><h2 class="t-h2" id="h-apoio">Quem apoia</h2></div>
         <a class="botao botao--texto" href="#parceiros">Ver todos os parceiros<svg><use href="#i-seta"/></svg></a>
       </div>
       <div class="apoios">
-        <span class="apoio">Universidade Federal do Ceará</span><span class="apoio">Universidade Harvard</span><span class="apoio">Rice University</span><span class="apoio">CNPq</span><span class="apoio">Fundação Lemann</span><span class="apoio">IPREDE</span><span class="apoio">LEPES · USP</span>
+        <span class="apoio">Universidade Federal do Ceará</span><span class="apoio">Universidade Harvard</span><span class="apoio">Rice University</span><span class="apoio">LEPES · USP</span><span class="apoio">CNPq</span><span class="apoio">FUNCAP</span><span class="apoio">IPREDE</span><span class="apoio">Instituto Myra Eliane</span><span class="apoio">Lar de Clara</span><span class="apoio">Creche do Sítio Barreiras</span>
       </div>
     </div>
   </section>
 
-  <section class="secao" aria-labelledby="h-chamada">
+  <section class="secao branca" aria-labelledby="h-chamada">
     <div class="wrap">
       <div class="chamada">
         <div>
@@ -478,14 +525,14 @@ a.tag:hover,button.tag:hover{filter:brightness(.96);text-decoration:underline}
     </div>
   </section>
 
-  <section class="secao branca" aria-labelledby="h-duvidas">
+  <section class="secao" aria-labelledby="h-duvidas">
     <div class="wrap">
       <div class="cabeca centro"><span class="t-sobretitulo">Dúvidas</span><h2 class="t-h1" id="h-duvidas">Perguntas frequentes</h2></div>
       <div class="duvidas">
-        <details><summary>Quem pode participar?<svg><use href="#i-mais"/></svg></summary><p class="t-corpo-m">Qualquer pessoa que cuida de uma criança de 0 a 5 anos: mãe, pai, avó, avô, tia, irmã mais velha. Gestantes também são bem-vindas.</p></details>
+        <details><summary>Quem pode participar?<svg><use href="#i-mais"/></svg></summary><p class="t-corpo-m">Gestantes participam do módulo Gestação. Quem cuida de uma criança de 0 a 5 anos (mãe, pai, avó, avô, tia, irmã mais velha) participa do módulo Primeira infância.</p></details>
         <details><summary>Preciso levar a criança?<svg><use href="#i-mais"/></svg></summary><p class="t-corpo-m">Pode levar. Em vários grupos, alguém da equipe brinca com as crianças enquanto os adultos participam.</p></details>
-        <details><summary>Quanto tempo dura?<svg><use href="#i-mais"/></svg></summary><p class="t-corpo-m">São 11 encontros, um por semana, de até 1h30 cada. Ao todo, cerca de três meses.</p></details>
-        <details><summary>Quanto custa para a família?<svg><use href="#i-mais"/></svg></summary><p class="t-corpo-m">A participação nos grupos do CRAS é gratuita. <span class="pendente">a confirmar</span></p></details>
+        <details><summary>Quanto tempo dura?<svg><use href="#i-mais"/></svg></summary><p class="t-corpo-m">O módulo Gestação tem 5 encontros e o módulo Primeira infância tem 11. Os encontros são semanais e duram até 1h30.</p></details>
+        <details><summary>Quanto custa para a família?<svg><use href="#i-mais"/></svg></summary><p class="t-corpo-m">A participação nos grupos é gratuita. <span class="pendente">a confirmar</span></p></details>
         <details><summary>Como levar o programa para a minha cidade?<svg><use href="#i-mais"/></svg></summary><p class="t-corpo-m">Fale com a equipe pela página “Leve ao seu município”. Explicamos as etapas: sensibilização, formação de facilitadores e grupos com as famílias.</p></details>
       </div>
     </div>
@@ -504,9 +551,9 @@ a.tag:hover,button.tag:hover{filter:brightness(.96);text-decoration:underline}
     <div class="wrap">
       <h2 class="t-h2" id="h-para-quem" style="margin-bottom:var(--espaco-6)">Para quem, onde e como</h2>
       <div class="grade-3">
-        <div class="card"><svg class="ico" style="color:var(--cor-icon-brand)"><use href="#i-coracao"/></svg><h3 class="t-h4">Para quem</h3><p class="t-corpo-m sec">Mães, pais, avós e outros cuidadores de crianças de 0 a 5 anos, e gestantes. Prioridade para famílias em situação de vulnerabilidade social.</p></div>
-        <div class="card"><svg class="ico" style="color:var(--cor-icon-brand)"><use href="#i-local"/></svg><h3 class="t-h4">Onde</h3><p class="t-corpo-m sec">No CRAS, dentro do Serviço de Convivência e Fortalecimento de Vínculos. Também em creches e organizações comunitárias.</p></div>
-        <div class="card"><svg class="ico" style="color:var(--cor-icon-brand)"><use href="#i-conversa"/></svg><h3 class="t-h4">Como</h3><p class="t-corpo-m sec">Um encontro por semana, de até 1h30, com um facilitador e um auxiliar formados pelo projeto.</p></div>
+        <div class="card"><svg class="ico" style="color:var(--cor-icon-brand)"><use href="#i-coracao"/></svg><h3 class="t-h4">Para quem</h3><p class="t-corpo-m sec">Gestantes, e mães, pais, avós e outros cuidadores de crianças de 0 a 5 anos. Prioridade para famílias em situação de vulnerabilidade social.</p></div>
+        <div class="card"><svg class="ico" style="color:var(--cor-icon-brand)"><use href="#i-local"/></svg><h3 class="t-h4">Onde</h3><p class="t-corpo-m sec">Perto de casa: CRAS, unidades básicas de saúde, creches e organizações da comunidade, no formato do Serviço de Convivência e Fortalecimento de Vínculos.</p></div>
+        <div class="card"><svg class="ico" style="color:var(--cor-icon-brand)"><use href="#i-conversa"/></svg><h3 class="t-h4">Como</h3><p class="t-corpo-m sec">Grupos semanais de 90 minutos, com um facilitador e um auxiliar formados pelo projeto.</p></div>
       </div>
     </div>
   </section>
@@ -525,7 +572,12 @@ a.tag:hover,button.tag:hover{filter:brightness(.96);text-decoration:underline}
 
   <section class="secao branca" aria-labelledby="h-curriculo">
     <div class="wrap">
-      <div class="cabeca"><span class="t-sobretitulo">Currículo</span><h2 class="t-h1" id="h-curriculo">Os 11 encontros</h2><p class="t-corpo-g sec">Criado por Meredith Rowe e Lizzie Baird, da Universidade Harvard. São quatro unidades, cada uma com a sua cor.</p></div>
+      <div class="cabeca"><span class="t-sobretitulo">Módulo Gestação</span><h2 class="t-h1" id="h-gestacao">Conversa boa começa na gestação</h2><p class="t-corpo-g sec">Cinco encontros semanais de 90 minutos, em grupos de até 10 gestantes. O objetivo é fortalecer o vínculo entre mãe e bebê e mostrar que a conversa começa antes do nascimento.</p></div>
+      <div class="grade-3" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+        <article class="card unidade u4"><div class="faixa"></div><div class="conteudo"><span class="tag tag--terracota" style="justify-self:start">Parte 1</span><h3 class="t-h4">Desenvolvimento na barriga</h3><p class="t-corpo-m sec">Como o cérebro do bebê se forma na gestação e por que ele já aprende com o que vive no útero. O papel da mãe desde agora.</p></div></article>
+        <article class="card unidade u4"><div class="faixa"></div><div class="conteudo"><span class="tag tag--terracota" style="justify-self:start">Parte 2</span><h3 class="t-h4">Estímulos e afeto na gestação</h3><p class="t-corpo-m sec">Emoções da gestante, rede de apoio e formas de interagir com o bebê na barriga: a voz, o toque e a conversa.</p></div></article>
+      </div>
+      <div class="cabeca" style="margin-top:96px"><span class="t-sobretitulo">Módulo Primeira infância</span><h2 class="t-h1" id="h-curriculo">Os 11 encontros</h2><p class="t-corpo-g sec">Criado por Meredith Rowe e Lizzie Baird, da Universidade Harvard. São quatro unidades, cada uma com a sua cor, para grupos de até 15 cuidadores.</p></div>
       <div class="grade-4">
         <article class="card unidade u1"><div class="faixa"></div><div class="conteudo"><span class="tag tag--ouro" style="justify-self:start">Unidade 1</span><h3 class="t-h4">Desenvolvimento na primeira infância</h3>
           <ol class="t-corpo-p"><li><span class="passo">1</span>Aprendendo o tempo todo</li><li><span class="passo">2</span>Parentalidade importa</li><li><span class="passo">3</span>Marcos do desenvolvimento</li><li><span class="passo">4</span>Pais e cuidadores são construtores de cérebros</li></ol></div></article>
@@ -544,23 +596,68 @@ a.tag:hover,button.tag:hover{filter:brightness(.96);text-decoration:underline}
       <div class="cabeca"><span class="t-sobretitulo">História</span><h2 class="t-h1" id="h-historia">Como chegamos até aqui</h2></div>
       <ol class="tempo">
         <li><time>2020</time><p class="t-corpo-m">No I Desafio Universitário pela Primeira Infância, a equipe recebe o currículo de Meredith Rowe, de Harvard.</p></li>
-        <li><time>2021</time><p class="t-corpo-m">Formação da equipe com as autoras do currículo e primeiros grupos de prática.</p></li>
-        <li><time>2022</time><p class="t-corpo-m">Grupo piloto aos sábados no CAEN/UFC e aprovação do apoio do CNPq (Pró-Humanidades).</p></li>
-        <li><time>2023</time><p class="t-corpo-m">Grupos no PROSSICA, em Fortaleza, e no CEI Olga &amp; Parsifal Barroso, em Caucaia. Chegada à zona rural de Missão Velha.</p></li>
-        <li><time>2025</time><p class="t-corpo-m">Tese de doutorado avalia a implementação do programa.</p></li>
+        <li><time>2021</time><p class="t-corpo-m">Primeira formação da equipe, on-line, com Meredith Rowe e Lizzie Baird.</p></li>
+        <li><time>2022</time><p class="t-corpo-m">Primeiros grupos piloto, no Conjunto Ceará, em Fortaleza, e no CEI Olga &amp; Parsifal Barroso, em Caucaia. Apoio do CNPq (Pró-Humanidades).</p></li>
+        <li><time>2023</time><p class="t-corpo-m">Pilotos no PROSSICA, em Fortaleza, e na Creche do Sítio Barreiras, na zona rural de Missão Velha. Apoio da FUNCAP.</p></li>
+        <li><time>2024</time><p class="t-corpo-m">Grupos de avaliação no CEI Olga &amp; Parsifal Barroso, no IPREDE, na Creche do Sítio Barreiras e no grupo Raimunda.</p></li>
+        <li><time>2025</time><p class="t-corpo-m">Novo grupo no IPREDE, tese de doutorado sobre a implementação e desenho do módulo Gestação.</p></li>
+        <li><time>2026</time><p class="t-corpo-m">O programa passa a reunir gestantes, pais e cuidadores, com grupos no IPREDE, em Caucaia e em Missão Velha.</p></li>
       </ol>
     </div>
   </section>
 
-  <section class="secao branca" aria-labelledby="h-equipe">
+  <section class="secao branca" aria-labelledby="h-grupos">
     <div class="wrap">
-      <div class="cabeca"><span class="t-sobretitulo">Equipe</span><h2 class="t-h1" id="h-equipe">Quem faz</h2></div>
-      <div class="grade-3">
-        <div class="card pessoa"><span class="ini">GI</span><div><h3 class="t-h4">Guilherme Irffi</h3><p class="t-corpo-p">Professor do CAEN/UFC. Coordena o programa no Brasil.</p></div></div>
-        <div class="card pessoa"><span class="ini">MR</span><div><h3 class="t-h4">Meredith Rowe e Lizzie Baird</h3><p class="t-corpo-p">Universidade Harvard. Autoras do currículo.</p></div></div>
-        <div class="card pessoa"><span class="ini">FC</span><div><h3 class="t-h4">Flávio Cunha</h3><p class="t-corpo-p">Rice University. Coordena o projeto de pesquisa.</p></div></div>
+      <div class="cabeca"><span class="t-sobretitulo">Onde já estivemos</span><h2 class="t-h1" id="h-grupos">Grupos realizados</h2><p class="t-corpo-g sec">Grupos piloto testaram o currículo. Grupos de avaliação acompanharam as famílias antes e depois dos encontros.</p></div>
+      <div class="rolagem">
+        <table class="tabela-grupos">
+          <thead><tr><th>Local</th><th>Tipo</th><th class="num">Ano</th><th class="num">Participantes</th></tr></thead>
+          <tbody>
+            <tr><td>Conjunto Ceará, Fortaleza</td><td>Piloto</td><td class="num">2022</td><td class="num">31</td></tr>
+            <tr><td>CEI Olga &amp; Parsifal Barroso, Caucaia</td><td>Piloto</td><td class="num">2022</td><td class="num">11</td></tr>
+            <tr><td>PROSSICA, Fortaleza</td><td>Piloto</td><td class="num">2023</td><td class="num">24</td></tr>
+            <tr><td>Creche do Sítio Barreiras, Missão Velha</td><td>Piloto</td><td class="num">2023</td><td class="num">14</td></tr>
+            <tr><td>CEI Olga &amp; Parsifal Barroso, Caucaia</td><td>Avaliação</td><td class="num">2024</td><td class="num">16</td></tr>
+            <tr><td>Raimunda</td><td>Avaliação</td><td class="num">2024</td><td class="num">6</td></tr>
+            <tr><td>IPREDE, Fortaleza</td><td>Avaliação</td><td class="num">2024</td><td class="num">15</td></tr>
+            <tr><td>Creche do Sítio Barreiras, Missão Velha</td><td>Avaliação</td><td class="num">2024</td><td class="num">17</td></tr>
+            <tr><td>IPREDE, Fortaleza</td><td>Avaliação</td><td class="num">2025</td><td class="num">15</td></tr>
+          </tbody>
+          <tfoot><tr><td colspan="3">Total</td><td class="num">149</td></tr></tfoot>
+        </table>
       </div>
-      <p class="equipe-nomes t-corpo-p"><strong>Equipe de pesquisa e intervenção:</strong> Ana Rayssa Lopes, Brysa Fernandes, Camila de Freitas, Camila Guedes Corrêa, Gabriella Nogueira, Isabel Fontgalland, Isabela Braga Sales, José Carlos, Juliana Cavalcanti, Kelly Samá, Laila Monteiro, Letícia Lima, Maria Cecília Bonfim, Maria Helena Campelo, Maria Fiebig, Samira Melo e Walacy Maciel.</p>
+      <p class="t-legenda sec" style="margin-top:var(--espaco-3)">Fonte: registro institucional do programa.</p>
+    </div>
+  </section>
+
+  <section class="secao" aria-labelledby="h-equipe">
+    <div class="wrap">
+      <div class="cabeca"><span class="t-sobretitulo">Equipe</span><h2 class="t-h1" id="h-equipe">Quem faz</h2><p class="t-corpo-g sec">Economistas, psicólogas, assistentes sociais e educadoras de várias instituições, unidos pela primeira infância.</p></div>
+      <div class="grade-3">
+        <div class="card pessoa"><span class="ini">GI</span><div><h3 class="t-h4">Guilherme Irffi</h3><p class="t-corpo-p">Coordenação. Professor do CAEN/UFC.</p></div></div>
+        <div class="card pessoa"><span class="ini">MR</span><div><h3 class="t-h4">Meredith Rowe</h3><p class="t-corpo-p">Pesquisadora colaboradora. Universidade Harvard, autora do currículo com Lizzie Baird.</p></div></div>
+        <div class="card pessoa"><span class="ini">FC</span><div><h3 class="t-h4">Flávio Cunha</h3><p class="t-corpo-p">Pesquisador colaborador. Rice University.</p></div></div>
+      </div>
+      <h3 class="t-h3 subtitulo-equipe">Pesquisadores</h3>
+      <ul class="membros t-corpo-m">
+        <li><b>Ana Karine Justino da Costa</b><span class="t-corpo-p">LEPES · USP</span></li>
+        <li><b>Elisângela Nogueira Teixeira</b><span class="t-corpo-p">UFC</span></li>
+        <li><b>Isabela Braga Sales</b><span class="t-corpo-p">LEPES · USP</span></li>
+        <li><b>Marcelo Eduardo Lamas Pereira</b><span class="t-corpo-p">Unifor</span></li>
+        <li><b>Marco Túlio Aniceto França</b><span class="t-corpo-p">PUC-RS</span></li>
+        <li><b>Maria Helena Rodrigues Campelo</b><span class="t-corpo-p">UFMA</span></li>
+        <li><b>Mayana Souza de Andrade</b><span class="t-corpo-p">LEPES · USP</span></li>
+      </ul>
+      <h3 class="t-h3 subtitulo-equipe">Assistentes de pesquisa</h3>
+      <ul class="membros t-corpo-m">
+        <li><b>Ana Beatriz Cardoso</b><span class="t-corpo-p">Psicóloga, IPREDE</span></li>
+        <li><b>Camila Guedes Corrêa</b><span class="t-corpo-p">Doutoranda em Economia, CAEN/UFC</span></li>
+        <li><b>Gabriella Costa Nogueira Vieira</b><span class="t-corpo-p">Psicóloga</span></li>
+        <li><b>Isabel Fontgalland</b><span class="t-corpo-p">Doutoranda em Economia, CAEN/UFC</span></li>
+        <li><b>Juliana Cavalcanti</b><span class="t-corpo-p">Doutoranda em Economia, CAEN/UFC</span></li>
+        <li><b>Luana Falcão Rocha</b><span class="t-corpo-p">Psicóloga</span></li>
+      </ul>
+      <p class="equipe-nomes t-corpo-p"><strong>Também fizeram parte das formações e dos grupos:</strong> Ana Rayssa Lopes, Brysa Fernandes, Camila de Freitas, José Carlos, Kelly Samá, Laila Monteiro, Letícia Lima, Maria Cecília Bonfim, Maria Fiebig, Samira Melo, Walacy Maciel e outras pessoas formadas em 7 turmas desde 2021.</p>
     </div>
   </section>
 </div>
@@ -642,8 +739,16 @@ a.tag:hover,button.tag:hover{filter:brightness(.96);text-decoration:underline}
       </div>
     </div>
   </section>
-  <section class="secao" aria-labelledby="h-materiais">
+  <section class="secao" aria-labelledby="h-projetos">
     <div class="wrap">
+      <h2 class="t-h2" id="h-projetos" style="margin-bottom:var(--espaco-5)">Projetos de pesquisa</h2>
+      <ul class="membros t-corpo-m" style="margin-bottom:96px">
+        <li><b>Programa de parentalidade em centros de assistência social</b><span class="t-corpo-p">CNPq, Chamada 40/2022 (Pró-Humanidades)</span></li>
+        <li><b>Programa de parentalidade em centros de assistência social</b><span class="t-corpo-p">FUNCAP, Edital Universal 06/2023</span></li>
+        <li><b>Ambientes e aprendizagens na educação infantil no Ceará</b><span class="t-corpo-p">FUNCAP, Edital Pró-Humanidades 07/2023</span></li>
+        <li><b>Conversa boa começa na gestação</b><span class="t-corpo-p">Projeto com gestantes, 2025</span></li>
+        <li><b>Implementação e avaliação com gestantes, pais e cuidadores</b><span class="t-corpo-p">Proposta CNPq Universal 2026</span></li>
+      </ul>
       <h2 class="t-h2" id="h-materiais" style="margin-bottom:var(--espaco-5)">Materiais do projeto</h2>
       <div class="grade-3">
         <div class="card"><svg class="ico" style="color:var(--cor-icon-brand)"><use href="#i-livro"/></svg><h3 class="t-h4">Parentalidade Positiva Importa</h3><p class="t-corpo-p sec">Livro do projeto.</p></div>
@@ -670,7 +775,7 @@ a.tag:hover,button.tag:hover{filter:brightness(.96);text-decoration:underline}
         <div><h2 class="t-h1">Quer ser parceiro?</h2><p class="t-corpo-g">Prefeituras, creches, fundações e universidades podem apoiar de formas diferentes.</p></div>
         <a class="botao botao--grande botao--claro" href="#apoie">Ver formas de apoio<svg><use href="#i-seta"/></svg></a>
       </div>
-      <p class="t-legenda sec" style="margin-top:var(--espaco-4)">Lista montada a partir do Glossário e dos Relatos do projeto. Os logotipos oficiais entram no lugar dos nomes quando os parceiros enviarem as marcas.</p>
+      <p class="t-legenda sec" style="margin-top:var(--espaco-4)">Lista montada a partir dos projetos de pesquisa do programa (2025 e 2026). Os logotipos oficiais entram no lugar dos nomes quando os parceiros enviarem as marcas.</p>
     </div>
   </section>
 </div>
@@ -686,8 +791,8 @@ a.tag:hover,button.tag:hover{filter:brightness(.96);text-decoration:underline}
     <div class="wrap">
       <h2 class="t-h2" id="h-etapas" style="margin-bottom:var(--espaco-6)">Como funciona a implantação</h2>
       <ol class="etapas">
-        <li><span class="passo passo--concluido">1</span><h3 class="t-h4">Sensibilização</h3><p class="t-corpo-m">Apresentação do programa para gestores e equipes dos CRAS.</p></li>
-        <li><span class="passo passo--concluido">2</span><h3 class="t-h4">Formação</h3><p class="t-corpo-m">Facilitadores e auxiliares do município aprendem a conduzir os 11 encontros.</p></li>
+        <li><span class="passo passo--concluido">1</span><h3 class="t-h4">Sensibilização</h3><p class="t-corpo-m">Apresentação do programa para gestores e equipes de CRAS, unidades de saúde e educação infantil.</p></li>
+        <li><span class="passo passo--concluido">2</span><h3 class="t-h4">Formação</h3><p class="t-corpo-m">Profissionais do território aprendem a conduzir os encontros dos módulos Gestação e Primeira infância.</p></li>
         <li><span class="passo passo--atual">3</span><h3 class="t-h4">Grupos com as famílias</h3><p class="t-corpo-m">Os encontros começam, com acompanhamento e avaliação da UFC.</p></li>
       </ol>
     </div>
@@ -770,9 +875,9 @@ a.tag:hover,button.tag:hover{filter:brightness(.96);text-decoration:underline}
     ['Zona de desenvolvimento proximal','A distância entre o que a criança já faz sozinha e o que consegue fazer com ajuda.']
   ];
   var GRUPOS=[
-    ['Pesquisa e universidades','Desenvolvem o currículo, formam as equipes e avaliam os resultados.',[['UFC','Universidade Federal do Ceará'],['CAEN','Pós-Graduação em Economia, UFC'],['CGPR','Centro de Gestão para Resultados, UFC'],['CEnPE','Centro de Excelência em Políticas Educacionais, UFC'],['LEPES','USP Ribeirão Preto'],['Harvard','Autoria do currículo'],['Rice University','Projeto de pesquisa']]],
-    ['Fomento','Financiam a pesquisa, a formação e os materiais.',[['CNPq','Pró-Humanidades 2022'],['Fundação Lemann','Apoio']]],
-    ['Primeira infância e territórios','Recebem os grupos e aproximam o programa das famílias.',[['IPREDE','Instituto da Primeira Infância'],['Instituto Myra Eliane','Apoio'],['CEI Olga & Parsifal Barroso','Caucaia'],['PROSSICA','Fortaleza'],['Creche Maria Hilda','Missão Velha']]],
+    ['Pesquisa e universidades','Desenvolvem o currículo, formam as equipes e avaliam os resultados.',[['UFC','Universidade Federal do Ceará: CAEN, NUPER, CGPR e CEnPE'],['Harvard','Autoria do currículo'],['Rice University','Pesquisa'],['LEPES · USP','Ribeirão Preto'],['UFMA','Universidade Federal do Maranhão'],['Unifor','Universidade de Fortaleza'],['PUC-RS','Pesquisa']]],
+    ['Fomento','Financiam a pesquisa, a formação e os materiais.',[['CNPq','Pró-Humanidades 2022'],['FUNCAP','Universal e Pró-Humanidades 2023'],['Fundação Lemann','Apoio']]],
+    ['Primeira infância e territórios','Recebem os grupos e aproximam o programa das famílias.',[['IPREDE','Instituto da Primeira Infância, Fortaleza'],['Instituto Myra Eliane','Caucaia'],['Lar de Clara','Caucaia'],['CEI Olga & Parsifal Barroso','Caucaia'],['Creche do Sítio Barreiras','Missão Velha, com a AFCC'],['PROSSICA','Fortaleza'],['Instituto Pensando Bem','Fortaleza'],['MEAC','Maternidade-Escola Assis Chateaubriand, UFC']]],
     ['Administração pública','Secretarias que levam os encontros aos CRAS.',[]]
   ];
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
